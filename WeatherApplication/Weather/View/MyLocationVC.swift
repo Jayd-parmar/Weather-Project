@@ -193,7 +193,6 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func setupUIConstraints() {
         scrollView.frame.size = CGSize(width: view.bounds.width, height: view.bounds.height)
         scrollView.edgesToSuperview()
-        
         contentView.width(view.bounds.width)
         contentView.height(view.bounds.height)
         contentView.edges(to: scrollView)

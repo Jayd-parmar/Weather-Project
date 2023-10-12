@@ -14,18 +14,21 @@ class forecastCVCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.applyShadow()
         return imageView
     }()
     let lblTime: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.font = UIFont.systemFont(ofSize: 12.0)
+        lbl.applyShadow()
         return lbl
     }()
     let lblTemp: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.font = UIFont.systemFont(ofSize: 17.0)
+        lbl.applyShadow()
         return lbl
     }()
     override init(frame: CGRect) {
@@ -42,6 +45,11 @@ class forecastCVCell: UICollectionViewCell {
     func setupCellProperty() {
         self.layer.cornerRadius = 30
         self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 4
+        self.layer.shadowOffset = CGSize(width: 0, height: 10)
     }
     
     func setupUI() {
@@ -52,7 +60,7 @@ class forecastCVCell: UICollectionViewCell {
     
     func setupConstraints() {
         imgWeather.width(75)
-        imgWeather.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0))
+        imgWeather.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         lblTime.height(16)
         lblTime.top(to: self, offset: 27)
         lblTime.leftToRight(of: imgWeather, offset: 13)

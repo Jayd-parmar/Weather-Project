@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Location-->
+        <!--My LocationVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MyLocationVC" id="BYZ-38-t0r" customClass="MyLocationVC" customModule="WeatherApplication" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Location" id="Rbt-sF-zJY">
+                    <navigationItem key="navigationItem" id="Rbt-sF-zJY">
                         <barButtonItem key="backBarButtonItem" title="Back" id="HVv-mh-VXn"/>
                     </navigationItem>
                 </viewController>

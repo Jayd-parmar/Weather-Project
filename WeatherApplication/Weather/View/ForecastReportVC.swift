@@ -16,6 +16,7 @@ class ForecastReportVC: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textAlignment = .center
         label.text = "Forecast Report"
+        label.applyShadow()
         return label
     }()
     

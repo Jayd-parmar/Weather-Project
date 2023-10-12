@@ -33,7 +33,9 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 30.0)
+//        label.font = UIFont.systemFont(ofSize: 30.0)
+        label.font = UIFont(name: "RobotoSlab-Medium", size: 30)
+        label.applyShadow()
         return label
     }()
     private let lblDate: UILabel = {
@@ -41,12 +43,14 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 15.0)
+        label.applyShadow()
         return label
     }()
     private let imgWeather: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
+        image.applyShadow()
         return image
     }()
     private let lblTemp: UILabel = {
@@ -54,6 +58,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 70.0)
+        label.applyShadow()
         return label
     }()
     private let vwTemp: UIView = {
@@ -78,6 +83,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.font = UIFont.systemFont(ofSize: 15.0)
         label.text = "Temp"
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblValTmp: UILabel = {
@@ -86,6 +92,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 20.0)
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblHmdty: UILabel = {
@@ -95,6 +102,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.font = UIFont.systemFont(ofSize: 15.0)
         label.text = "Humidity"
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblValHmdty: UILabel = {
@@ -103,6 +111,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 20.0)
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblWind: UILabel = {
@@ -112,6 +121,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.text = "Wind"
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblValWind: UILabel = {
@@ -120,6 +130,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 20.0)
         label.textAlignment = .center
+        label.applyShadow()
         return label
     }()
     private let lblToday: UILabel = {
@@ -128,6 +139,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.text = "Today"
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 20.0)
+        label.applyShadow()
         return label
     }()
     private let btnViewReport: UIButton = {
@@ -135,6 +147,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("View Report", for: .normal)
         btn.setTitleColor(.blue, for: .normal)
+        btn.applyShadow()
         return btn
     }()
     var forecastCV: UICollectionView!
@@ -249,13 +262,14 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         forecastCV.dataSource = self
         forecastCV.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
         forecastCV.showsHorizontalScrollIndicator = false
+        forecastCV.clipsToBounds = false
         forecastCV.register(forecastCVCell.self, forCellWithReuseIdentifier: "cell")
         contentView.addSubview(forecastCV)
         
         forecastCV.topToBottom(of: btnViewReport, offset: 31)
         forecastCV.left(to: contentView, offset: 10)
         forecastCV.right(to: contentView, offset: 10)
-        forecastCV.height(85)
+        forecastCV.height(90)
     }
     
     @objc func viewReportTapped() {
@@ -277,19 +291,17 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func observeEventWeather() {
         weatherVMInst.eventHandler = { [weak self] event in
             guard let self else { return }
-            
-            switch event {
-            case .loading:
-                print("loading....")
-            case .stopLoading:
-                print("stop loading...")
-            case .dataLoaded:
-                print("data loaded")
-                    DispatchQueue.main.async {
-                        self.configureWeatherDetails()
-                    }
-            case .error(_):
-                print("error")
+            DispatchQueue.main.async {
+                switch event {
+                case .loading:
+                    self.showIndicator()
+                case .stopLoading:
+                    self.dismissIndicator()
+                case .dataLoaded:
+                    self.configureWeatherDetails()
+                case .error(_):
+                    self.showToast(message: "Error while fetching the weather request", font: .systemFont(ofSize: 12.0))
+                }
             }
         }
     }
@@ -317,19 +329,19 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func observeEventForecast() {
         forecastVMInst.eventHandler = { [weak self] event in
             guard let self else { return }
-            switch event {
-            case .loading:
-                print("loading....")
-            case .stopLoading:
-                print("stop loading...")
-            case .dataLoaded:
-                print("data loaded")
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch event {
+                case .loading:
+                    self.showIndicator()
+                case .stopLoading:
+                    self.dismissIndicator()
+                case .dataLoaded:
                     self.forecastCV.reloadData()
+                case .error(_):
+                    self.showToast(message: "Error while fetching the forecast request", font: .systemFont(ofSize: 12.0))
                 }
-            case .error(_):
-                print("error")
             }
+            
         }
     }
 }

@@ -47,7 +47,7 @@ struct Wind: Codable {
 }
 
 struct System: Codable {
-    let type: Int
-    let id: Int
+    let type: Int?
+    let id: Int?
     let country: String
 }

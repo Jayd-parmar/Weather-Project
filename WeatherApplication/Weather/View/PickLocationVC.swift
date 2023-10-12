@@ -10,10 +10,45 @@ import TinyConstraints
 
 class PickLocationVC: UIViewController {
 
-    var cntView = UIView()
-    var lblLocation = UILabel()
-    var lblDesc = UILabel()
-    var txtSearchLocation = UITextField()
+    private let cntView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        return cv
+    }()
+    private let lblLocation: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Pick a location"
+        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.applyShadow()
+        return label
+    }()
+    private let lblDesc: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Type the area or city you want to know the \n detailed weather information at \n this time"
+        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.applyShadow()
+        return label
+    }()
+    private let txtSearchLocation: UITextField = {
+        let txtField = UITextField()
+        txtField.translatesAutoresizingMaskIntoConstraints = false
+        txtField.backgroundColor =  UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+        txtField.layer.cornerRadius = 20
+        txtField.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        txtField.layer.shadowOffset = CGSize(width: 0, height: 4)
+        txtField.layer.shadowOpacity = 0.3
+        txtField.placeholder = "Search"
+        txtField.textColor = .white
+        
+        return txtField
+    }()
     let weatherVMInst = WeatherViewModel()
     var weatherLocationData: [WeatherResponse] = []
     var collectionView : UICollectionView!
@@ -26,55 +61,29 @@ class PickLocationVC: UIViewController {
         txtSearchLocation.delegate = self
     }
     
-    func setupUI() {
+    private func setupUI() {
         view.addSubview(cntView)
-        cntView.translatesAutoresizingMaskIntoConstraints = false
-        cntView.edgesToSuperview()
-        cntView.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
         cntView.addSubview(lblLocation)
-        lblLocation.translatesAutoresizingMaskIntoConstraints = false
+        cntView.addSubview(lblDesc)
+        cntView.addSubview(txtSearchLocation)
+        setupUIConstraints()
+    }
+    
+    private func setupUIConstraints() {
+        cntView.edgesToSuperview()
         lblLocation.centerX(to: cntView)
         lblLocation.top(to: cntView, offset: 90)
-        lblLocation.text = "Pick a location"
-        lblLocation.font = UIFont.boldSystemFont(ofSize: 30.0)
-        lblLocation.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        cntView.addSubview(lblDesc)
-        lblDesc.translatesAutoresizingMaskIntoConstraints = false
-        lblDesc.text = "Type the area or city you want to know the \n detailed weather information at \n this time"
         lblDesc.left(to: cntView, offset: 55)
         lblDesc.right(to: cntView, offset: -55)
-        lblDesc.font = UIFont.systemFont(ofSize: 15.0)
-        lblDesc.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        lblDesc.textAlignment = .center
         lblDesc.topToBottom(of: lblLocation, offset: 5)
-        lblDesc.numberOfLines = 0
-        
-        cntView.addSubview(txtSearchLocation)
-        txtSearchLocation.translatesAutoresizingMaskIntoConstraints = false
         txtSearchLocation.topToBottom(of: lblDesc, offset: 21)
         txtSearchLocation.height(63)
         txtSearchLocation.left(to: cntView, offset: 45)
         txtSearchLocation.right(to: cntView, offset: -45)
-        txtSearchLocation.backgroundColor =  UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
-        txtSearchLocation.layer.cornerRadius = 20
-        txtSearchLocation.placeholder = "Search"
-        
-        let placeholderText = "Search"
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.white,
-        ]
-        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
-
-        txtSearchLocation.attributedPlaceholder = attributedPlaceholder
-        txtSearchLocation.textColor = .white
-        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 36, height: txtSearchLocation.frame.height))
-        txtSearchLocation.leftView = leftView
-        txtSearchLocation.leftViewMode = .always
-        txtSearchLocation.setIcon(UIImage(named: "SearchWhite")!)
+        setupUITextField()
     }
     
-    func setupCollectionView() {
+    private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 162, height: 200)
@@ -93,6 +102,20 @@ class PickLocationVC: UIViewController {
         collectionView.left(to: cntView, offset: 45)
         collectionView.right(to: cntView, offset: -28)
         collectionView.bottom(to: cntView, offset: -79)
+    }
+    
+    private func setupUITextField() {
+        let placeholderText = "Search"
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+        ]
+        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+
+        txtSearchLocation.attributedPlaceholder = attributedPlaceholder
+        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 36, height: txtSearchLocation.frame.height))
+        txtSearchLocation.leftView = leftView
+        txtSearchLocation.leftViewMode = .always
+        txtSearchLocation.setIcon(UIImage(named: "SearchWhite")!)
     }
     
 }
@@ -118,13 +141,14 @@ extension PickLocationVC: UITextFieldDelegate {
             case .stopLoading:
                 print("stop loading...")
             case .dataLoaded:
-                print("data loaded")
-                weatherLocationData.append(weatherVMInst.pickLocationData!)
+                weatherLocationData.insert(weatherVMInst.pickLocationData!, at: 0)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             case .error(_):
-                print("error")
+                DispatchQueue.main.async {
+                    self.showToast(message: "The City you entered might not be available", font: .systemFont(ofSize: 12.0))
+                }
             }
             
         }
@@ -142,6 +166,4 @@ extension PickLocationVC: UICollectionViewDataSource, UICollectionViewDelegate {
         cell!.configurationLocationCellDetails(weatherLocationData[indexPath.row])
         return cell!
     }
-
-
 }

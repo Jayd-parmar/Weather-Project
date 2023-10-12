@@ -33,8 +33,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-//        label.font = UIFont.systemFont(ofSize: 30.0)
-        label.font = UIFont(name: "RobotoSlab-Medium", size: 30)
+        label.font = UIFont.systemFont(ofSize: 30.0)
         label.applyShadow()
         return label
     }()

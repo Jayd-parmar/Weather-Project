@@ -9,7 +9,7 @@ import UIKit
 import TinyConstraints
 
 class ResultCVCell: UICollectionViewCell {
-    
+    //MARK: -Variable
     let clblTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

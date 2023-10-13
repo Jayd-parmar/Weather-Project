@@ -20,7 +20,7 @@ class PickLocationVC: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Pick a location"
-        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.font = .robotoSlabMedium(size: 30)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.applyShadow()
         return label
@@ -29,7 +29,7 @@ class PickLocationVC: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Type the area or city you want to know the \n detailed weather information at \n this time"
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = .robotoSlabLight(size: 15)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -46,7 +46,6 @@ class PickLocationVC: UIViewController {
         txtField.layer.shadowOpacity = 0.3
         txtField.placeholder = "Search"
         txtField.textColor = .white
-        
         return txtField
     }()
     let weatherVMInst = WeatherViewModel()
@@ -108,6 +107,7 @@ class PickLocationVC: UIViewController {
         let placeholderText = "Search"
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
+            .font: UIFont(name: "RobotoSlab-Light", size: 17)! as UIFont
         ]
         let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
 

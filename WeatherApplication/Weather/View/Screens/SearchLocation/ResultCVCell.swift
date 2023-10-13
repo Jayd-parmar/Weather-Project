@@ -14,7 +14,7 @@ class ResultCVCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
@@ -25,7 +25,7 @@ class ResultCVCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-//        imageView.applyShadow()
+        imageView.applyShadow()
         return imageView
     }()
     
@@ -33,7 +33,7 @@ class ResultCVCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
@@ -43,7 +43,7 @@ class ResultCVCell: UICollectionViewCell {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        label.font = .robotoSlabLight(size: 18)
         label.textAlignment = .center
         label.applyShadow()
         return label

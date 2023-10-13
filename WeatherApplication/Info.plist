@@ -4,12 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string>RobotoSlab-Medium.ttf</string>
+		<string>RobotoSlab-Light.ttf</string>
 	</array>
-	<key>item0</key>
-	<string>RobotoSlab-Light.ttf</string>
-	<key>item1</key>
-	<string>RobotoSlab-Medium.ttf</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

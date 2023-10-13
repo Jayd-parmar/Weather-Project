@@ -13,7 +13,7 @@ class ForecastReportVC: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = .robotoSlabMedium(size: 30)
         label.textAlignment = .center
         label.text = "Forecast Report"
         label.applyShadow()

@@ -20,7 +20,7 @@ class iconCVCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 15)
+        label.font = .robotoSlabMedium(size: 15)
         label.applyShadow()
         return label
     }()

@@ -8,6 +8,7 @@
 import UIKit
 
 class ForecastReportCVCell: UICollectionViewCell {
+    let cellVMInst: CellViewModel = CellViewModel()
     let imgWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +21,8 @@ class ForecastReportCVCell: UICollectionViewCell {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        lbl.font = UIFont.systemFont(ofSize: 14.0)
+        lbl.font = .robotoSlabMedium(size: 14)
+        lbl.textAlignment = .center
         lbl.applyShadow()
         return lbl
     }()
@@ -28,7 +30,8 @@ class ForecastReportCVCell: UICollectionViewCell {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        lbl.font = UIFont.systemFont(ofSize: 14.0)
+        lbl.font = .robotoSlabLight(size: 13)
+        lbl.textAlignment = .center
         lbl.applyShadow()
         return lbl
     }()
@@ -36,7 +39,7 @@ class ForecastReportCVCell: UICollectionViewCell {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        lbl.font = UIFont.systemFont(ofSize: 36.0)
+        lbl.font = .robotoSlabMedium(size: 36)
         lbl.numberOfLines = 1
         lbl.applyShadow()
         return lbl
@@ -90,38 +93,10 @@ class ForecastReportCVCell: UICollectionViewCell {
     }
     
     func configureForecastCellDetails(_ data: List) {
-        var date: String = ""
-        var time: String = ""
-        date += formateDate(date: data.dt_txt)
-        time += formateTime(time: data.dt_txt)
-        lblDate.text = "\(date)"
-        lblTime.text = "\(time)"
+        lblDate.text = "\(cellVMInst.formatDateToDay(date: data.dt_txt))"
+        lblTime.text = "\(cellVMInst.formatDateToMonthAndDay(date: data.dt_txt))"
         let temp = String(format: "%.1f", data.main.temp)
         lblTemp.text = "\(temp)c"
         imgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
-    }
-    
-    func formateDate(date: String) -> String {
-        let dateString = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        if let date = dateFormatter.date(from: dateString) {
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            return dateFormatter.string(from: date)
-        }
-        return "11-11-2023"
-    }
-    
-    func formateTime(time: String) -> String {
-        let timeString = time
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        if let date = dateFormatter.date(from: timeString) {
-            dateFormatter.dateFormat = "HH:mm"
-            return dateFormatter.string(from: date)
-        }
-        return "09:00"
     }
 }

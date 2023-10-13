@@ -149,15 +149,43 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         btn.applyShadow()
         return btn
     }()
-    var iconCV: UICollectionView!
-    var forecastCV: UICollectionView!
+    private let iconCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 5, right: 13)
+        layout.estimatedItemSize = CGSize(width: 86, height: 80)
+        layout.minimumLineSpacing = 30
+        
+        let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor =  UIColor(red: 0.469, green: 0.511, blue: 0.654, alpha: 1)
+        cv.showsHorizontalScrollIndicator = false
+        cv.clipsToBounds = false
+        cv.register(iconCVCell.self, forCellWithReuseIdentifier: "cell")
+        cv.applyShadow()
+        return cv
+    }()
+    private let forecastCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 166, height: 85)
+        layout.minimumLineSpacing = 20
+        
+        let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.showsHorizontalScrollIndicator = false
+        cv.clipsToBounds = false
+        cv.register(forecastCVCell.self, forCellWithReuseIdentifier: "cell")
+        return cv
+    }()
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupUIConstraints()
-        setUpUICollectionView()
+        setUpdelegateDataSourceCV()
         observeEventWeather()
         observeEventForecast()
     }
@@ -173,7 +201,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func setupUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        setupIconCollectionView()
+        contentView.addSubview(iconCV)
         contentView.addSubview(lblCity)
         contentView.addSubview(lblDate)
         contentView.addSubview(imgWeather)
@@ -190,6 +218,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         contentView.addSubview(lblToday)
         contentView.addSubview(btnViewReport)
         btnViewReport.addTarget(self, action: #selector(viewReportTapped), for: .touchUpInside)
+        contentView.addSubview(forecastCV)
     }
     
     private func setupUIConstraints() {
@@ -251,47 +280,18 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         lblToday.topToBottom(of: vwTemp, offset: 31)
         btnViewReport.topToBottom(of: vwWind, offset: 31)
         btnViewReport.right(to: contentView, offset: -21)
-    }
-    
-    private func setupIconCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 5, right: 13)
-        layout.estimatedItemSize = CGSize(width: 86, height: 80)
-        layout.minimumLineSpacing = 30
-        
-        iconCV = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        iconCV.translatesAutoresizingMaskIntoConstraints = false
-        iconCV.backgroundColor =  UIColor(red: 0.469, green: 0.511, blue: 0.654, alpha: 1)
-        iconCV.showsHorizontalScrollIndicator = false
-        iconCV.clipsToBounds = false
-        iconCV.delegate = self
-        iconCV.dataSource = self
-        iconCV.register(iconCVCell.self, forCellWithReuseIdentifier: "cell")
-        iconCV.applyShadow()
-        contentView.addSubview(iconCV)
-    }
-    
-    private func setUpUICollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 166, height: 85)
-        layout.minimumLineSpacing = 20
-
-        forecastCV = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        forecastCV.translatesAutoresizingMaskIntoConstraints = false
-        forecastCV.delegate = self
-        forecastCV.dataSource = self
-        forecastCV.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
-        forecastCV.showsHorizontalScrollIndicator = false
-        forecastCV.clipsToBounds = false
-        forecastCV.register(forecastCVCell.self, forCellWithReuseIdentifier: "cell")
-        contentView.addSubview(forecastCV)
         
         forecastCV.topToBottom(of: btnViewReport, offset: 31)
         forecastCV.left(to: contentView, offset: 10)
         forecastCV.right(to: contentView, offset: 10)
         forecastCV.height(90)
+    }
+    
+    private func setUpdelegateDataSourceCV() {
+        iconCV.delegate = self
+        iconCV.dataSource = self
+        forecastCV.delegate = self
+        forecastCV.dataSource = self
     }
     
     @objc func viewReportTapped() {

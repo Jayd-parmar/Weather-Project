@@ -228,13 +228,7 @@
 		293BF1C52AD26EB10018E66F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				293BF1CB2AD271FA0018E66F /* MyLocationVC.swift */,
-				29D4AFB92AD92E59009CC37D /* iconCVCell.swift */,
-				296BEB132AD5657100715342 /* forecastCVCell.swift */,
-				293BF1CD2AD273C30018E66F /* PickLocationVC.swift */,
-				296BEB112AD5508700715342 /* ResultCVCell.swift */,
-				293BF1CF2AD2746F0018E66F /* ForecastReportVC.swift */,
-				296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */,
+				29D4AFBE2AD958EC009CC37D /* Screens */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,6 +249,44 @@
 				296BEB182AD815C700715342 /* RobotoSlab-Medium.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		29D4AFBB2AD958C6009CC37D /* MyLocation */ = {
+			isa = PBXGroup;
+			children = (
+				293BF1CB2AD271FA0018E66F /* MyLocationVC.swift */,
+				29D4AFB92AD92E59009CC37D /* iconCVCell.swift */,
+				296BEB132AD5657100715342 /* forecastCVCell.swift */,
+			);
+			path = MyLocation;
+			sourceTree = "<group>";
+		};
+		29D4AFBC2AD958D2009CC37D /* SearchLocation */ = {
+			isa = PBXGroup;
+			children = (
+				293BF1CD2AD273C30018E66F /* PickLocationVC.swift */,
+				296BEB112AD5508700715342 /* ResultCVCell.swift */,
+			);
+			path = SearchLocation;
+			sourceTree = "<group>";
+		};
+		29D4AFBD2AD958DE009CC37D /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				293BF1CF2AD2746F0018E66F /* ForecastReportVC.swift */,
+				296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		29D4AFBE2AD958EC009CC37D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				29D4AFBB2AD958C6009CC37D /* MyLocation */,
+				29D4AFBC2AD958D2009CC37D /* SearchLocation */,
+				29D4AFBD2AD958DE009CC37D /* Forecast */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

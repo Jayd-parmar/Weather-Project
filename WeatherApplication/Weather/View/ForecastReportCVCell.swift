@@ -37,6 +37,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         lbl.font = UIFont.systemFont(ofSize: 36.0)
+        lbl.numberOfLines = 1
         lbl.applyShadow()
         return lbl
     }()
@@ -78,13 +79,14 @@ class ForecastReportCVCell: UICollectionViewCell {
     func setupUIConstraints() {
         containerView.width(90)
         containerView.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 0))
-        lblDate.edgesToSuperview(excluding: [.bottom], insets: UIEdgeInsets(top: 12, left: 5, bottom: 0, right: 5))
+        lblDate.edgesToSuperview(excluding: [.bottom], insets: UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0))
         lblTime.topToBottom(of: lblDate, offset: 1)
         lblTime.centerX(to: lblDate)
-        lblTemp.leftToRight(of: containerView, offset: 15)
-        lblTemp.centerY(to: containerView)
-        imgWeather.leftToRight(of: lblTemp, offset: 15)
-        imgWeather.centerY(to: lblTemp)
+        lblTemp.leftToRight(of: containerView, offset: 20)
+        lblTemp.center(in: self)
+        imgWeather.width(80)
+        imgWeather.right(to: self, offset: -10)
+        imgWeather.edgesToSuperview(excluding: [.left, .right], insets: UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0))
     }
     
     func configureForecastCellDetails(_ data: List) {
@@ -94,9 +96,9 @@ class ForecastReportCVCell: UICollectionViewCell {
         time += formateTime(time: data.dt_txt)
         lblDate.text = "\(date)"
         lblTime.text = "\(time)"
-    
-        lblTemp.text = "\(data.main.temp)c"
-        imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(data.weather[0].icon)@2x.png")
+        let temp = String(format: "%.1f", data.main.temp)
+        lblTemp.text = "\(temp)c"
+        imgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
     }
     
     func formateDate(date: String) -> String {

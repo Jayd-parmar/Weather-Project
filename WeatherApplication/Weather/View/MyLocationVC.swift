@@ -48,7 +48,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let imgWeather: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFit
         image.applyShadow()
         return image
     }()
@@ -312,7 +312,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         lblValTmp.text = "\(weather.main.temp) c"
         lblValHmdty.text = "\(weather.main.humidity)%"
         lblValWind.text = "\(weather.wind.speed) kmph"
-        imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(weather.weather[0].icon)@2x.png")
+        imgWeather.image = UIImage(named: "\(weather.weather[0].icon.dropLast())")
     }
     
     private func formatDate(dt: Int) {

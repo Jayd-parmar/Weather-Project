@@ -13,7 +13,6 @@ enum HttpMethod: String {
 
 protocol EndPointAPIType {
     var path: String { get }
-    var baseURL: String { get }
     var url: String? { get }
     var methods: HttpMethod { get }
     var headers: [String: String]? { get }
@@ -41,11 +40,8 @@ extension EndPointItems: EndPointAPIType {
             return "weather"
         }
     }
-    var baseURL: String {
-        return "https://api.openweathermap.org/data/2.5/"
-    }
     var url: String? {
-        return "\(baseURL)\(path)"
+        return "\(Constant.URL.apiBaseUrl)\(path)"
     }
     var methods: HttpMethod {
         return .get

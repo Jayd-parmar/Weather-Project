@@ -27,7 +27,6 @@
 		293BF1D92AD3D2E20018E66F /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1D82AD3D2E20018E66F /* ForecastModel.swift */; };
 		293BF1DB2AD3D2F80018E66F /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1DA2AD3D2F80018E66F /* ForecastViewModel.swift */; };
 		293BF1DD2AD402C70018E66F /* Contstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1DC2AD402C70018E66F /* Contstants.swift */; };
-		293BF1DF2AD402EE0018E66F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1DE2AD402EE0018E66F /* Extensions.swift */; };
 		293BF1E22AD403170018E66F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 293BF1E12AD403170018E66F /* Kingfisher */; };
 		293BF1E52AD428C30018E66F /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 293BF1E42AD428C30018E66F /* TinyConstraints */; };
 		296BEB122AD5508700715342 /* ResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB112AD5508700715342 /* ResultCVCell.swift */; };
@@ -37,6 +36,13 @@
 		29D4AFC42AD9646F009CC37D /* RobotoSlab-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29D4AFC32AD9646F009CC37D /* RobotoSlab-Medium.ttf */; };
 		29D4AFC62AD9647C009CC37D /* RobotoSlab-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29D4AFC52AD9647C009CC37D /* RobotoSlab-Light.ttf */; };
 		29D4AFC82AD97C49009CC37D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFC72AD97C49009CC37D /* CellViewModel.swift */; };
+		29D4AFCA2AD97F2F009CC37D /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFC92AD97F2F009CC37D /* TextFieldExtension.swift */; };
+		29D4AFCC2AD97F3B009CC37D /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFCB2AD97F3B009CC37D /* ButtonExtension.swift */; };
+		29D4AFCE2AD97F4A009CC37D /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFCD2AD97F4A009CC37D /* LabelExtension.swift */; };
+		29D4AFD02AD97F5A009CC37D /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFCF2AD97F5A009CC37D /* ImageExtension.swift */; };
+		29D4AFD22AD97F6C009CC37D /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFD12AD97F6C009CC37D /* CollectionViewExtension.swift */; };
+		29D4AFD42AD97F83009CC37D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFD32AD97F83009CC37D /* ViewControllerExtension.swift */; };
+		29D4AFD62AD97F98009CC37D /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFD52AD97F98009CC37D /* FontExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +87,6 @@
 		293BF1D82AD3D2E20018E66F /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		293BF1DA2AD3D2F80018E66F /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		293BF1DC2AD402C70018E66F /* Contstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contstants.swift; sourceTree = "<group>"; };
-		293BF1DE2AD402EE0018E66F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		296BEB112AD5508700715342 /* ResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCVCell.swift; sourceTree = "<group>"; };
 		296BEB132AD5657100715342 /* forecastCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forecastCVCell.swift; sourceTree = "<group>"; };
 		296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastReportCVCell.swift; sourceTree = "<group>"; };
@@ -89,6 +94,13 @@
 		29D4AFC32AD9646F009CC37D /* RobotoSlab-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Medium.ttf"; sourceTree = "<group>"; };
 		29D4AFC52AD9647C009CC37D /* RobotoSlab-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Light.ttf"; sourceTree = "<group>"; };
 		29D4AFC72AD97C49009CC37D /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		29D4AFC92AD97F2F009CC37D /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		29D4AFCB2AD97F3B009CC37D /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
+		29D4AFCD2AD97F4A009CC37D /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
+		29D4AFCF2AD97F5A009CC37D /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		29D4AFD12AD97F6C009CC37D /* CollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
+		29D4AFD32AD97F83009CC37D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		29D4AFD52AD97F98009CC37D /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,17 +153,15 @@
 		293BF18B2AD26E250018E66F /* WeatherApplication */ = {
 			isa = PBXGroup;
 			children = (
-				296BEB172AD80FCE00715342 /* Font */,
+				29D4AFD72AD980D1009CC37D /* Application */,
 				293BF1BF2AD26E5E0018E66F /* Constant */,
 				293BF1C12AD26E8B0018E66F /* Extensions */,
+				296BEB172AD80FCE00715342 /* Font */,
 				293BF1C02AD26E690018E66F /* Helper */,
+				29D4AFD82AD980E6009CC37D /* StoryBoard */,
 				293BF1C32AD26EA30018E66F /* Weather */,
 				293BF1C22AD26E960018E66F /* Utility */,
-				293BF18C2AD26E250018E66F /* AppDelegate.swift */,
-				293BF18E2AD26E250018E66F /* SceneDelegate.swift */,
-				293BF1922AD26E250018E66F /* Main.storyboard */,
 				293BF1982AD26E260018E66F /* Assets.xcassets */,
-				293BF19A2AD26E260018E66F /* LaunchScreen.storyboard */,
 				293BF19D2AD26E260018E66F /* Info.plist */,
 				293BF1952AD26E250018E66F /* WeatherApplication.xcdatamodeld */,
 			);
@@ -195,7 +205,13 @@
 		293BF1C12AD26E8B0018E66F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				293BF1DE2AD402EE0018E66F /* Extensions.swift */,
+				29D4AFC92AD97F2F009CC37D /* TextFieldExtension.swift */,
+				29D4AFCB2AD97F3B009CC37D /* ButtonExtension.swift */,
+				29D4AFCD2AD97F4A009CC37D /* LabelExtension.swift */,
+				29D4AFCF2AD97F5A009CC37D /* ImageExtension.swift */,
+				29D4AFD12AD97F6C009CC37D /* CollectionViewExtension.swift */,
+				29D4AFD32AD97F83009CC37D /* ViewControllerExtension.swift */,
+				29D4AFD52AD97F98009CC37D /* FontExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +306,24 @@
 				29D4AFBD2AD958DE009CC37D /* Forecast */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		29D4AFD72AD980D1009CC37D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				293BF18C2AD26E250018E66F /* AppDelegate.swift */,
+				293BF18E2AD26E250018E66F /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		29D4AFD82AD980E6009CC37D /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				293BF1922AD26E250018E66F /* Main.storyboard */,
+				293BF19A2AD26E260018E66F /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,24 +467,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D4AFD42AD97F83009CC37D /* ViewControllerExtension.swift in Sources */,
 				293BF18D2AD26E250018E66F /* AppDelegate.swift in Sources */,
 				296BEB162AD69BA100715342 /* ForecastReportCVCell.swift in Sources */,
 				293BF1CC2AD271FA0018E66F /* MyLocationVC.swift in Sources */,
+				29D4AFD22AD97F6C009CC37D /* CollectionViewExtension.swift in Sources */,
+				29D4AFCA2AD97F2F009CC37D /* TextFieldExtension.swift in Sources */,
 				293BF1C82AD26FCD0018E66F /* ApiManager.swift in Sources */,
 				293BF1D72AD3BC960018E66F /* WeatherViewModel.swift in Sources */,
 				293BF18F2AD26E250018E66F /* SceneDelegate.swift in Sources */,
+				29D4AFD02AD97F5A009CC37D /* ImageExtension.swift in Sources */,
+				29D4AFCE2AD97F4A009CC37D /* LabelExtension.swift in Sources */,
 				293BF1D42AD3BC110018E66F /* WeatherModel.swift in Sources */,
 				293BF1972AD26E250018E66F /* WeatherApplication.xcdatamodeld in Sources */,
 				293BF1D02AD2746F0018E66F /* ForecastReportVC.swift in Sources */,
 				293BF1CA2AD2702C0018E66F /* EndPointAPIType.swift in Sources */,
+				29D4AFCC2AD97F3B009CC37D /* ButtonExtension.swift in Sources */,
 				29D4AFC82AD97C49009CC37D /* CellViewModel.swift in Sources */,
 				293BF1CE2AD273C30018E66F /* PickLocationVC.swift in Sources */,
-				293BF1DF2AD402EE0018E66F /* Extensions.swift in Sources */,
 				293BF1DB2AD3D2F80018E66F /* ForecastViewModel.swift in Sources */,
 				293BF1D92AD3D2E20018E66F /* ForecastModel.swift in Sources */,
 				293BF1DD2AD402C70018E66F /* Contstants.swift in Sources */,
 				293BF1D22AD27D710018E66F /* LocationManager.swift in Sources */,
 				29D4AFBA2AD92E59009CC37D /* iconCVCell.swift in Sources */,
+				29D4AFD62AD97F98009CC37D /* FontExtension.swift in Sources */,
 				296BEB122AD5508700715342 /* ResultCVCell.swift in Sources */,
 				296BEB142AD5657100715342 /* forecastCVCell.swift in Sources */,
 			);

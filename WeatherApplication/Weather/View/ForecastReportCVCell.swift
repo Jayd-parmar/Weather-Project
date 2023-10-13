@@ -78,14 +78,14 @@ class ForecastReportCVCell: UICollectionViewCell {
     
     func setupUIConstraints() {
         containerView.width(90)
-        containerView.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 0))
+        containerView.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 0))
         lblDate.edgesToSuperview(excluding: [.bottom], insets: UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0))
         lblTime.topToBottom(of: lblDate, offset: 1)
         lblTime.centerX(to: lblDate)
         lblTemp.leftToRight(of: containerView, offset: 20)
         lblTemp.center(in: self)
         imgWeather.width(80)
-        imgWeather.right(to: self, offset: -10)
+        imgWeather.right(to: self, offset: -15)
         imgWeather.edgesToSuperview(excluding: [.left, .right], insets: UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0))
     }
     

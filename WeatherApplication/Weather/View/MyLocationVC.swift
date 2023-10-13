@@ -149,6 +149,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         btn.applyShadow()
         return btn
     }()
+    var iconCV: UICollectionView!
     var forecastCV: UICollectionView!
     
     //MARK: - Life Cycle
@@ -172,6 +173,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func setupUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        setupIconCollectionView()
         contentView.addSubview(lblCity)
         contentView.addSubview(lblDate)
         contentView.addSubview(imgWeather)
@@ -197,9 +199,12 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         contentView.height(view.bounds.height)
         contentView.edges(to: scrollView)
         
+        iconCV.height(100)
+        iconCV.edges(to: contentView, excluding: .bottom)
+        
         lblCity.height(40)
         lblCity.centerX(to: contentView)
-        lblCity.top(to: contentView, offset: 100)
+        lblCity.topToBottom(of: iconCV, offset: 23)
         
         lblDate.height(20)
         lblDate.centerX(to: contentView)
@@ -246,6 +251,25 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         lblToday.topToBottom(of: vwTemp, offset: 31)
         btnViewReport.topToBottom(of: vwWind, offset: 31)
         btnViewReport.right(to: contentView, offset: -21)
+    }
+    
+    private func setupIconCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 5, right: 13)
+        layout.estimatedItemSize = CGSize(width: 86, height: 80)
+        layout.minimumLineSpacing = 30
+        
+        iconCV = UICollectionView( frame: .zero, collectionViewLayout: layout)
+        iconCV.translatesAutoresizingMaskIntoConstraints = false
+        iconCV.backgroundColor =  UIColor(red: 0.469, green: 0.511, blue: 0.654, alpha: 1)
+        iconCV.showsHorizontalScrollIndicator = false
+        iconCV.clipsToBounds = false
+        iconCV.delegate = self
+        iconCV.dataSource = self
+        iconCV.register(iconCVCell.self, forCellWithReuseIdentifier: "cell")
+        iconCV.applyShadow()
+        contentView.addSubview(iconCV)
     }
     
     private func setUpUICollectionView() {
@@ -347,18 +371,37 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
 extension MyLocationVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (forecastVMInst.forecastData?.list.count) ?? 5
+        switch collectionView {
+        case self.iconCV:
+            return weatherVMInst.iconData.count
+        case self.forecastCV:
+            return (forecastVMInst.forecastData?.list.count) ?? 5
+        default:
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let forecastData = forecastVMInst.forecastData?.list {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? forecastCVCell
-            cell!.configureForecastCellDetails(forecastData[indexPath.row])
+        
+        switch collectionView {
+        case self.iconCV:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? iconCVCell
+            cell!.configrationCellDetails(weatherVMInst.iconData[indexPath.row].0, weatherVMInst.iconData[indexPath.row].1)
             return cell!
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? forecastCVCell
-            cell!.configureDefaultDetails()
-            return cell!
+        case self.forecastCV:
+            if let forecastData = forecastVMInst.forecastData?.list {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? forecastCVCell
+                cell!.configureForecastCellDetails(forecastData[indexPath.row])
+                return cell!
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? forecastCVCell
+                cell!.configureDefaultDetails()
+                return cell!
+            }
+        default:
+            return UICollectionViewCell()
         }
+        
     }
 }
+

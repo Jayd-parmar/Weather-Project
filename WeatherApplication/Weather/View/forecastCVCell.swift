@@ -31,6 +31,7 @@ class forecastCVCell: UICollectionViewCell {
         lbl.applyShadow()
         return lbl
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCellProperty()

@@ -25,7 +25,7 @@ class ResultCVCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.applyShadow()
+//        imageView.applyShadow()
         return imageView
     }()
     
@@ -93,7 +93,7 @@ class ResultCVCell: UICollectionViewCell {
     
     func configurationLocationCellDetails(_ data: WeatherResponse) {
         clblTemp.text = "\(data.main.temp)c"
-        cimgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(data.weather[0].icon)@2x.png")
+        cimgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
         lblDescWeather.text = "\(data.weather[0].main)"
         lblCity.text = "\(data.name), \(data.sys.country)"
     }

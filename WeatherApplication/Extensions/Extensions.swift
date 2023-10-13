@@ -34,28 +34,28 @@ extension UITextField {
 
 extension UILabel {
     func applyShadow() {
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
-        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 }
 
 extension UIImageView {
     func applyShadow() {
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
-        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 }
 
 extension UIButton {
     func applyShadow() {
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
-        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 }
 extension UICollectionView {
@@ -99,5 +99,15 @@ extension UIViewController {
     
     func dismissIndicator() {
         dismiss(animated: false, completion: nil)
+    }
+}
+
+extension UIFont {
+    static func robotoSlabMedium(size: CGFloat) -> UIFont? {
+        return UIFont(name: "RobotoSlab-Medium", size: size)
+    }
+    
+    static func robotoSlabLight(size: CGFloat) -> UIFont? {
+        return UIFont(name: "RobotoSlab-Light", size: size)
     }
 }

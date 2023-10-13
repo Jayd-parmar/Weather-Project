@@ -8,7 +8,7 @@
 import UIKit
 
 class forecastCVCell: UICollectionViewCell {
-    
+    let cellVMInst: CellViewModel = CellViewModel()
     let imgWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,14 +20,14 @@ class forecastCVCell: UICollectionViewCell {
     let lblTime: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFont(ofSize: 12.0)
+        lbl.font = .robotoSlabMedium(size: 12)
         lbl.applyShadow()
         return lbl
     }()
     let lblTemp: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.font = UIFont.systemFont(ofSize: 17.0)
+        lbl.font = .robotoSlabMedium(size: 17)
         lbl.applyShadow()
         return lbl
     }()
@@ -48,9 +48,9 @@ class forecastCVCell: UICollectionViewCell {
         self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
-        self.layer.shadowOffset = CGSize(width: 0, height: 10)
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
     func setupUI() {
@@ -73,27 +73,13 @@ class forecastCVCell: UICollectionViewCell {
     
     func configureForecastCellDetails(_ data: List) {
         imgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
-//        imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(data.weather[0].icon)@2x.png")
-        lblTemp.text = "\(data.main.temp) c"
-        lblTime.text = formateDate(date: data.dt_txt)
+        lblTemp.text = "\(data.main.temp)c"
+        lblTime.text = cellVMInst.formatDateto12Hrs(date: data.dt_txt)
     }
     
     func configureDefaultDetails() {
         imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)10d@2x.png")
         lblTime.text = "10:00 pm"
         lblTemp.text = "10 c"
-    }
-    
-    func formateDate(date: String) -> String {
-        let dateString = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        if let date = dateFormatter.date(from: dateString) {
-            dateFormatter.dateFormat = "HH:mm"
-            return dateFormatter.string(from: date)
-        } else {
-            return "10: 00pm"
-        }
     }
 }

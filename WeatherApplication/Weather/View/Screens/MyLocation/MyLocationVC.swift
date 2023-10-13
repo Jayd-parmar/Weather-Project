@@ -33,7 +33,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 30.0)
+        label.font = .robotoSlabMedium(size: 30)
         label.applyShadow()
         return label
     }()
@@ -41,7 +41,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = .robotoSlabLight(size: 15)
         label.applyShadow()
         return label
     }()
@@ -56,7 +56,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 70.0)
+        label.font = .robotoSlabMedium(size: 70)
         label.applyShadow()
         return label
     }()
@@ -79,7 +79,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = .robotoSlabLight(size: 15)
         label.text = "Temp"
         label.textAlignment = .center
         label.applyShadow()
@@ -89,7 +89,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
@@ -98,7 +98,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = .robotoSlabLight(size: 15)
         label.text = "Humidity"
         label.textAlignment = .center
         label.applyShadow()
@@ -108,7 +108,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
@@ -116,7 +116,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblWind: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        label.font = .robotoSlabLight(size: 15)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.text = "Wind"
         label.textAlignment = .center
@@ -127,7 +127,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
@@ -137,7 +137,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Today"
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 20.0)
+        label.font = .robotoSlabLight(size: 20)
         label.applyShadow()
         return label
     }()
@@ -146,6 +146,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("View Report", for: .normal)
         btn.setTitleColor(.blue, for: .normal)
+        btn.titleLabel?.font = .robotoSlabLight(size: 20)
         btn.applyShadow()
         return btn
     }()
@@ -332,8 +333,8 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         guard let weather = weatherVMInst.weatherData else { return }
         lblCity.text = weather.name
         formatDate(dt: weather.dt)
-        lblTemp.text = "\(weather.main.temp) c"
-        lblValTmp.text = "\(weather.main.temp) c"
+        lblTemp.text = "\(weather.main.temp)c"
+        lblValTmp.text = "\(weather.main.temp)c"
         lblValHmdty.text = "\(weather.main.humidity)%"
         lblValWind.text = "\(weather.wind.speed) kmph"
         imgWeather.image = UIImage(named: "\(weather.weather[0].icon.dropLast())")

@@ -33,9 +33,10 @@
 		296BEB122AD5508700715342 /* ResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB112AD5508700715342 /* ResultCVCell.swift */; };
 		296BEB142AD5657100715342 /* forecastCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB132AD5657100715342 /* forecastCVCell.swift */; };
 		296BEB162AD69BA100715342 /* ForecastReportCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */; };
-		296BEB192AD815C700715342 /* RobotoSlab-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 296BEB182AD815C700715342 /* RobotoSlab-Medium.ttf */; };
-		296BEB1B2AD815DE00715342 /* RobotoSlab-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 296BEB1A2AD815DE00715342 /* RobotoSlab-Light.ttf */; };
 		29D4AFBA2AD92E59009CC37D /* iconCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFB92AD92E59009CC37D /* iconCVCell.swift */; };
+		29D4AFC42AD9646F009CC37D /* RobotoSlab-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29D4AFC32AD9646F009CC37D /* RobotoSlab-Medium.ttf */; };
+		29D4AFC62AD9647C009CC37D /* RobotoSlab-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29D4AFC52AD9647C009CC37D /* RobotoSlab-Light.ttf */; };
+		29D4AFC82AD97C49009CC37D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4AFC72AD97C49009CC37D /* CellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,9 +85,10 @@
 		296BEB112AD5508700715342 /* ResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCVCell.swift; sourceTree = "<group>"; };
 		296BEB132AD5657100715342 /* forecastCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forecastCVCell.swift; sourceTree = "<group>"; };
 		296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastReportCVCell.swift; sourceTree = "<group>"; };
-		296BEB182AD815C700715342 /* RobotoSlab-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Medium.ttf"; sourceTree = "<group>"; };
-		296BEB1A2AD815DE00715342 /* RobotoSlab-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Light.ttf"; sourceTree = "<group>"; };
 		29D4AFB92AD92E59009CC37D /* iconCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconCVCell.swift; sourceTree = "<group>"; };
+		29D4AFC32AD9646F009CC37D /* RobotoSlab-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Medium.ttf"; sourceTree = "<group>"; };
+		29D4AFC52AD9647C009CC37D /* RobotoSlab-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Light.ttf"; sourceTree = "<group>"; };
+		29D4AFC72AD97C49009CC37D /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				293BF1D62AD3BC960018E66F /* WeatherViewModel.swift */,
 				293BF1DA2AD3D2F80018E66F /* ForecastViewModel.swift */,
+				29D4AFC72AD97C49009CC37D /* CellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -245,8 +248,8 @@
 		296BEB172AD80FCE00715342 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				296BEB1A2AD815DE00715342 /* RobotoSlab-Light.ttf */,
-				296BEB182AD815C700715342 /* RobotoSlab-Medium.ttf */,
+				29D4AFC32AD9646F009CC37D /* RobotoSlab-Medium.ttf */,
+				29D4AFC52AD9647C009CC37D /* RobotoSlab-Light.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -402,9 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				293BF19C2AD26E260018E66F /* LaunchScreen.storyboard in Resources */,
-				296BEB1B2AD815DE00715342 /* RobotoSlab-Light.ttf in Resources */,
+				29D4AFC62AD9647C009CC37D /* RobotoSlab-Light.ttf in Resources */,
 				293BF1992AD26E260018E66F /* Assets.xcassets in Resources */,
-				296BEB192AD815C700715342 /* RobotoSlab-Medium.ttf in Resources */,
+				29D4AFC42AD9646F009CC37D /* RobotoSlab-Medium.ttf in Resources */,
 				293BF1942AD26E250018E66F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +443,7 @@
 				293BF1972AD26E250018E66F /* WeatherApplication.xcdatamodeld in Sources */,
 				293BF1D02AD2746F0018E66F /* ForecastReportVC.swift in Sources */,
 				293BF1CA2AD2702C0018E66F /* EndPointAPIType.swift in Sources */,
+				29D4AFC82AD97C49009CC37D /* CellViewModel.swift in Sources */,
 				293BF1CE2AD273C30018E66F /* PickLocationVC.swift in Sources */,
 				293BF1DF2AD402EE0018E66F /* Extensions.swift in Sources */,
 				293BF1DB2AD3D2F80018E66F /* ForecastViewModel.swift in Sources */,

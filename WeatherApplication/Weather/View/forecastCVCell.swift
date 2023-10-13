@@ -60,7 +60,7 @@ class forecastCVCell: UICollectionViewCell {
     
     func setupConstraints() {
         imgWeather.width(75)
-        imgWeather.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        imgWeather.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
         lblTime.height(16)
         lblTime.top(to: self, offset: 27)
         lblTime.leftToRight(of: imgWeather, offset: 13)
@@ -71,7 +71,8 @@ class forecastCVCell: UICollectionViewCell {
     }
     
     func configureForecastCellDetails(_ data: List) {
-        imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(data.weather[0].icon)@2x.png")
+        imgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
+//        imgWeather.setImage(with: "\(Constant.URL.weatherImageUrl)\(data.weather[0].icon)@2x.png")
         lblTemp.text = "\(data.main.temp) c"
         lblTime.text = formateDate(date: data.dt_txt)
     }

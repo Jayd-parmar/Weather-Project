@@ -124,7 +124,8 @@ extension PickLocationVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let enteredText = textField.text {
             APIManager.searchCity = enteredText
-            weatherVMInst.getWeatherData(search: enteredText)
+            weatherVMInst.search = enteredText
+            weatherVMInst.getWeatherData()
             textField.text = ""
         }
         textField.resignFirstResponder()

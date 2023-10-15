@@ -12,6 +12,7 @@ class WeatherViewModel {
     var eventHandler: ((Event) -> Void)?
     var weatherData: WeatherResponse?
     var pickLocationData: WeatherResponse?
+    var search: String? = nil
     let iconData: [(String, String)] = [
         ("01", "clear sky"),
         ("02", "few clouds"),
@@ -24,21 +25,29 @@ class WeatherViewModel {
         ("50", "mist")
     ]
     
-    func getWeatherData(search: String?) {
+    func getWeatherData() {
         self.eventHandler?(.loading)
         APIManager.shared.request(
             modelType: WeatherResponse.self,
-            type: (search != nil) ? EndPointItems.location : EndPointItems.weather
+            type: (self.search != nil) ? EndPointItems.location : EndPointItems.weather
         ){ response in
             self.eventHandler?(.stopLoading)
-                switch response {
-                case .success(let weather):
-                    (search != nil) ? (self.pickLocationData = weather) : (self.weatherData = weather)
-                    self.eventHandler?(.dataLoaded)
-                case .failure(let error):
-                    self.eventHandler?(.error(error))
-                }
+            switch response {
+            case .success(let weather):
+                (self.search != nil) ? (self.pickLocationData = weather) : (self.weatherData = weather)
+                self.eventHandler?(.dataLoaded)
+            case .failure(let error):
+                self.eventHandler?(.error(error))
+            }
         }
+    }
+    
+    func formatDate(dt: Int) -> String {
+        let timestamp = TimeInterval(dt)
+        let date = Date(timeIntervalSince1970: timestamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        return dateFormatter.string(from: date)
     }
 }
 

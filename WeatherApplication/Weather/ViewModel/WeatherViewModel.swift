@@ -13,6 +13,8 @@ class WeatherViewModel {
     var weatherData: WeatherResponse?
     var pickLocationData: WeatherResponse?
     var search: String? = nil
+    var lat: Double? = nil
+    var lon: Double? = nil
     let iconData: [(String, String)] = [
         ("01", "clear sky"),
         ("02", "few clouds"),
@@ -30,10 +32,13 @@ class WeatherViewModel {
         self.weatherApiService = weatherApiService
     }
     
+    var queryItems: [URLQueryItem]? = nil
+    
     func getWeatherData() {
+        addQueryParams()
         self.eventHandler?(.loading)
         weatherApiService.getWeatherData(modelType: WeatherResponse.self,
-                           type: (self.search != nil) ? EndPointItems.location : EndPointItems.weather) { response in
+                                         type: (self.search != nil) ? EndPointItems.location : EndPointItems.weather, queryItems: queryItems!) { response in
             self.eventHandler?(.stopLoading)
                 switch response {
                 case .success(let weather):
@@ -51,6 +56,23 @@ class WeatherViewModel {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM d, yyyy"
         return dateFormatter.string(from: date)
+    }
+    
+    func addQueryParams() {
+        if self.search != nil {
+            queryItems = [
+                URLQueryItem(name: "q", value: search),
+                URLQueryItem(name: "units", value: "metric"),
+                URLQueryItem(name: "appid", value: Constant.appid)
+            ]
+        } else {
+            queryItems = [
+                URLQueryItem(name: "lat", value: "\(self.lat!)"),
+                URLQueryItem(name: "lon", value: "\(self.lon!)"),
+                URLQueryItem(name: "units", value: "metric"),
+                URLQueryItem(name: "appid", value: Constant.appid)
+            ]
+        }
     }
 }
 

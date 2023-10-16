@@ -10,7 +10,6 @@
 		293BF18D2AD26E250018E66F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF18C2AD26E250018E66F /* AppDelegate.swift */; };
 		293BF18F2AD26E250018E66F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF18E2AD26E250018E66F /* SceneDelegate.swift */; };
 		293BF1942AD26E250018E66F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293BF1922AD26E250018E66F /* Main.storyboard */; };
-		293BF1972AD26E250018E66F /* WeatherApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1952AD26E250018E66F /* WeatherApplication.xcdatamodeld */; };
 		293BF1992AD26E260018E66F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 293BF1982AD26E260018E66F /* Assets.xcassets */; };
 		293BF19C2AD26E260018E66F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293BF19A2AD26E260018E66F /* LaunchScreen.storyboard */; };
 		293BF1A72AD26E260018E66F /* WeatherApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1A62AD26E260018E66F /* WeatherApplicationTests.swift */; };
@@ -27,8 +26,6 @@
 		293BF1D92AD3D2E20018E66F /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1D82AD3D2E20018E66F /* ForecastModel.swift */; };
 		293BF1DB2AD3D2F80018E66F /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1DA2AD3D2F80018E66F /* ForecastViewModel.swift */; };
 		293BF1DD2AD402C70018E66F /* Contstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BF1DC2AD402C70018E66F /* Contstants.swift */; };
-		293BF1E22AD403170018E66F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 293BF1E12AD403170018E66F /* Kingfisher */; };
-		293BF1E52AD428C30018E66F /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 293BF1E42AD428C30018E66F /* TinyConstraints */; };
 		296BEB122AD5508700715342 /* ResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB112AD5508700715342 /* ResultCVCell.swift */; };
 		296BEB142AD5657100715342 /* forecastCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB132AD5657100715342 /* forecastCVCell.swift */; };
 		296BEB162AD69BA100715342 /* ForecastReportCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296BEB152AD69BA100715342 /* ForecastReportCVCell.swift */; };
@@ -49,6 +46,11 @@
 		29D78B712ADCFB73001673F9 /* WeatherMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78B702ADCFB73001673F9 /* WeatherMockData.swift */; };
 		29D78B732ADCFD11001673F9 /* MockForecastAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78B722ADCFD11001673F9 /* MockForecastAPITest.swift */; };
 		29D78B752ADD05CA001673F9 /* CellViewModelDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78B742ADD05CA001673F9 /* CellViewModelDateTest.swift */; };
+		29D78B7A2ADD36A1001673F9 /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78B792ADD36A1001673F9 /* CoreDataViewModel.swift */; };
+		29D78B9D2ADD528E001673F9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 29D78B9C2ADD528E001673F9 /* Kingfisher */; };
+		29D78BA02ADD5297001673F9 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 29D78B9F2ADD5297001673F9 /* TinyConstraints */; };
+		29D78BA32ADD5EBB001673F9 /* WeatherApplication.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BA12ADD5EBB001673F9 /* WeatherApplication.xcdatamodeld */; };
+		29D78BA62ADD5F2D001673F9 /* SearchWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BA42ADD5F2D001673F9 /* SearchWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +75,6 @@
 		293BF18C2AD26E250018E66F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		293BF18E2AD26E250018E66F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		293BF1932AD26E250018E66F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		293BF1962AD26E250018E66F /* WeatherApplication.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApplication.xcdatamodel; sourceTree = "<group>"; };
 		293BF1982AD26E260018E66F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		293BF19B2AD26E260018E66F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		293BF19D2AD26E260018E66F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,6 +116,9 @@
 		29D78B702ADCFB73001673F9 /* WeatherMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMockData.swift; sourceTree = "<group>"; };
 		29D78B722ADCFD11001673F9 /* MockForecastAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockForecastAPITest.swift; sourceTree = "<group>"; };
 		29D78B742ADD05CA001673F9 /* CellViewModelDateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModelDateTest.swift; sourceTree = "<group>"; };
+		29D78B792ADD36A1001673F9 /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
+		29D78BA22ADD5EBB001673F9 /* WeatherApplication.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApplication.xcdatamodel; sourceTree = "<group>"; };
+		29D78BA42ADD5F2D001673F9 /* SearchWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +126,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				293BF1E22AD403170018E66F /* Kingfisher in Frameworks */,
-				293BF1E52AD428C30018E66F /* TinyConstraints in Frameworks */,
+				29D78B9D2ADD528E001673F9 /* Kingfisher in Frameworks */,
+				29D78BA02ADD5297001673F9 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +172,7 @@
 		293BF18B2AD26E250018E66F /* WeatherApplication */ = {
 			isa = PBXGroup;
 			children = (
+				29D78BA82ADD5F42001673F9 /* CoreDataEntity */,
 				29D78B662ADBFDDB001673F9 /* Services */,
 				29D4AFD72AD980D1009CC37D /* Application */,
 				293BF1BF2AD26E5E0018E66F /* Constant */,
@@ -179,7 +184,7 @@
 				293BF1C22AD26E960018E66F /* Utility */,
 				293BF1982AD26E260018E66F /* Assets.xcassets */,
 				293BF19D2AD26E260018E66F /* Info.plist */,
-				293BF1952AD26E250018E66F /* WeatherApplication.xcdatamodeld */,
+				29D78BA12ADD5EBB001673F9 /* WeatherApplication.xcdatamodeld */,
 			);
 			path = WeatherApplication;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				293BF1D62AD3BC960018E66F /* WeatherViewModel.swift */,
 				293BF1DA2AD3D2F80018E66F /* ForecastViewModel.swift */,
 				29D4AFC72AD97C49009CC37D /* CellViewModel.swift */,
+				29D78B792ADD36A1001673F9 /* CoreDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -356,6 +362,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		29D78BA82ADD5F42001673F9 /* CoreDataEntity */ = {
+			isa = PBXGroup;
+			children = (
+				29D78BA42ADD5F2D001673F9 /* SearchWeather.swift */,
+			);
+			path = CoreDataEntity;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -373,8 +387,8 @@
 			);
 			name = WeatherApplication;
 			packageProductDependencies = (
-				293BF1E12AD403170018E66F /* Kingfisher */,
-				293BF1E42AD428C30018E66F /* TinyConstraints */,
+				29D78B9C2ADD528E001673F9 /* Kingfisher */,
+				29D78B9F2ADD5297001673F9 /* TinyConstraints */,
 			);
 			productName = WeatherApplication;
 			productReference = 293BF1892AD26E250018E66F /* WeatherApplication.app */;
@@ -449,8 +463,8 @@
 			);
 			mainGroup = 293BF1802AD26E250018E66F;
 			packageReferences = (
-				293BF1E02AD403170018E66F /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				293BF1E32AD428C30018E66F /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				29D78B9B2ADD528E001673F9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				29D78B9E2ADD5297001673F9 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 			);
 			productRefGroup = 293BF18A2AD26E250018E66F /* Products */;
 			projectDirPath = "";
@@ -508,10 +522,12 @@
 				293BF1D72AD3BC960018E66F /* WeatherViewModel.swift in Sources */,
 				293BF18F2AD26E250018E66F /* SceneDelegate.swift in Sources */,
 				29D4AFD02AD97F5A009CC37D /* ImageExtension.swift in Sources */,
+				29D78BA62ADD5F2D001673F9 /* SearchWeather.swift in Sources */,
 				29D4AFCE2AD97F4A009CC37D /* LabelExtension.swift in Sources */,
+				29D78B7A2ADD36A1001673F9 /* CoreDataViewModel.swift in Sources */,
 				293BF1D42AD3BC110018E66F /* WeatherModel.swift in Sources */,
-				293BF1972AD26E250018E66F /* WeatherApplication.xcdatamodeld in Sources */,
 				293BF1D02AD2746F0018E66F /* ForecastReportVC.swift in Sources */,
+				29D78BA32ADD5EBB001673F9 /* WeatherApplication.xcdatamodeld in Sources */,
 				293BF1CA2AD2702C0018E66F /* EndPointAPIType.swift in Sources */,
 				29D4AFCC2AD97F3B009CC37D /* ButtonExtension.swift in Sources */,
 				29D4AFC82AD97C49009CC37D /* CellViewModel.swift in Sources */,
@@ -866,7 +882,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		293BF1E02AD403170018E66F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		29D78B9B2ADD528E001673F9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -874,7 +890,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		293BF1E32AD428C30018E66F /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+		29D78B9E2ADD5297001673F9 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/roberthein/TinyConstraints.git";
 			requirement = {
@@ -885,25 +901,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		293BF1E12AD403170018E66F /* Kingfisher */ = {
+		29D78B9C2ADD528E001673F9 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 293BF1E02AD403170018E66F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 29D78B9B2ADD528E001673F9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		293BF1E42AD428C30018E66F /* TinyConstraints */ = {
+		29D78B9F2ADD5297001673F9 /* TinyConstraints */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 293BF1E32AD428C30018E66F /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			package = 29D78B9E2ADD5297001673F9 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
 			productName = TinyConstraints;
 		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		293BF1952AD26E250018E66F /* WeatherApplication.xcdatamodeld */ = {
+		29D78BA12ADD5EBB001673F9 /* WeatherApplication.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				293BF1962AD26E250018E66F /* WeatherApplication.xcdatamodel */,
+				29D78BA22ADD5EBB001673F9 /* WeatherApplication.xcdatamodel */,
 			);
-			currentVersion = 293BF1962AD26E250018E66F /* WeatherApplication.xcdatamodel */;
+			currentVersion = 29D78BA22ADD5EBB001673F9 /* WeatherApplication.xcdatamodel */;
 			path = WeatherApplication.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

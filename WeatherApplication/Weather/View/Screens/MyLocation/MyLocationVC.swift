@@ -307,7 +307,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         lon = first.coordinate.longitude
         APIManager.lat = lat
         APIManager.lon = lon
-        weatherVMInst.getWeatherData(search: nil)
+        weatherVMInst.getWeatherData()
         forecastVMInst.getForecastData()
     }
     
@@ -332,21 +332,12 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func configureWeatherDetails() {
         guard let weather = weatherVMInst.weatherData else { return }
         lblCity.text = weather.name
-        formatDate(dt: weather.dt)
+        lblDate.text = weatherVMInst.formatDate(dt: weather.dt)
         lblTemp.text = "\(weather.main.temp)c"
         lblValTmp.text = "\(weather.main.temp)c"
         lblValHmdty.text = "\(weather.main.humidity)%"
         lblValWind.text = "\(weather.wind.speed) kmph"
         imgWeather.image = UIImage(named: "\(weather.weather[0].icon.dropLast())")
-    }
-    
-    private func formatDate(dt: Int) {
-        let timestamp = TimeInterval(dt)
-        let date = Date(timeIntervalSince1970: timestamp)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
-        let formattedDate = dateFormatter.string(from: date)
-        lblDate.text = formattedDate
     }
     
     private func observeEventForecast() {

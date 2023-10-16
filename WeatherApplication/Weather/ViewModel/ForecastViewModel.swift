@@ -11,13 +11,17 @@ class ForecastViewModel {
     
     var eventHandler: ((Event) -> Void)?
     var forecastData: ForecastResponse?
+    private let weatherApiService: WeatherAPIServiceDelegate
+    
+    init(weatherApiService: WeatherAPIServiceDelegate = WeatherApiService()) {
+        self.weatherApiService = weatherApiService
+    }
     
     func getForecastData() {
         self.eventHandler?(.loading)
-        APIManager.shared.request(
-            modelType: ForecastResponse.self,
-            type: EndPointItems.forecast
-        ){ response in
+        weatherApiService.getForecastData(modelType: ForecastResponse.self,
+                           type: EndPointItems.forecast
+        ) { response in
             self.eventHandler?(.stopLoading)
                 switch response {
                 case .success(let forecast):
@@ -25,7 +29,7 @@ class ForecastViewModel {
                     self.eventHandler?(.dataLoaded)
                 case .failure(let error):
                     self.eventHandler?(.error(error))
-                }
+            }
         }
     }
 }

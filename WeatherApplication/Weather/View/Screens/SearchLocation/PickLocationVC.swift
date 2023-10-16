@@ -49,11 +49,13 @@ class PickLocationVC: UIViewController {
         return txtField
     }()
     let weatherVMInst = WeatherViewModel()
-    var weatherLocationData: [WeatherResponse] = []
+    let coreDataVMInst = CoreDataViewModel()
+    var weatherCDLocation: [SearchWeather] = []
     var collectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherCDLocation = coreDataVMInst.fetchWeather()!
         observeEventWeather()
         setupUI()
         setupCollectionView()
@@ -123,7 +125,6 @@ class PickLocationVC: UIViewController {
 extension PickLocationVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let enteredText = textField.text {
-            APIManager.searchCity = enteredText
             weatherVMInst.search = enteredText
             weatherVMInst.getWeatherData()
             textField.text = ""
@@ -142,10 +143,25 @@ extension PickLocationVC: UITextFieldDelegate {
             case .stopLoading:
                 print("stop loading...")
             case .dataLoaded:
-                weatherLocationData.insert(weatherVMInst.pickLocationData!, at: 0)
                 DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                    
+                if let weatherData = self.weatherVMInst.pickLocationData {
+                    let temp = weatherData.main.temp
+                    let city = "\(weatherData.name), \(weatherData.sys.country)"
+                    let image = "\(weatherData.weather[0].icon.dropLast())"
+                    let weatherDesc = weatherData.weather[0].main
+                    let id = "\(weatherData.id)"
+                    
+                    if self.coreDataVMInst.getById(id: id) {
+                        let _ = self.coreDataVMInst.updateWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+                        self.showToast(message: "Updated weather data of city you entered", font: .systemFont(ofSize: 12.0))
+                    } else {
+                        let _ = self.coreDataVMInst.addWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+                    }
                 }
+                self.weatherCDLocation = self.coreDataVMInst.fetchWeather()!
+                self.collectionView.reloadData()
+            }
             case .error(_):
                 DispatchQueue.main.async {
                     self.showToast(message: "The City you entered might not be available", font: .systemFont(ofSize: 12.0))
@@ -159,12 +175,12 @@ extension PickLocationVC: UITextFieldDelegate {
 extension PickLocationVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherLocationData.count
+        return weatherCDLocation.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ResultCVCell
-        cell!.configurationLocationCellDetails(weatherLocationData[indexPath.row])
+        cell!.configurationLocationCellDetails(weatherCDLocation[indexPath.row])
         return cell!
     }
 }

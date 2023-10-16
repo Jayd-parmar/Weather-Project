@@ -17,16 +17,15 @@ enum DataError: Error {
 }
 
 final class APIManager {
+    
     static let shared = APIManager()
-    private let appid = "3f12be7cfb02c3ddcdc448d07932bc07"
-    static var lat: Double? = 0.0
-    static var lon: Double? = 0.0
-    static var searchCity: String? = nil
+    var request: URLRequest? = nil
     private init() {}
     
     func request<T: Codable>(
-        modelType: T.Type,    // Response
+        modelType: T.Type,
         type: EndPointAPIType,
+        queryItems: [URLQueryItem]? = nil,
         completion: @escaping Handler<T>
     ) {
         guard let strURL = type.url else {
@@ -34,21 +33,17 @@ final class APIManager {
             return
         }
         
-        // For queryParams
-        var queryItems: [URLQueryItem]? = nil
-        if type.apiType == "weather" || type.apiType == "forecast" {
-            queryItems = [URLQueryItem(name: "lat", value: "\(APIManager.lat!)"), URLQueryItem(name: "lon", value: "\(APIManager.lon!)"),URLQueryItem(name: "units", value: "metric"),URLQueryItem(name: "appid", value: appid)]
-        } else if type.apiType == "location" {
-            queryItems = [URLQueryItem(name: "q", value: "\(APIManager.searchCity!)"),URLQueryItem(name: "units", value: "metric"),URLQueryItem(name: "appid", value: appid)]
+        if !(queryItems!.isEmpty) {
+            var urlComps = URLComponents(string: strURL)
+            urlComps?.queryItems = queryItems
+            request = URLRequest(url: (urlComps?.url)!)
+        } else {
+            request = URLRequest(url: URL(string: strURL)!)
         }
+        request?.httpMethod = type.methods.rawValue
+        request?.allHTTPHeaderFields = type.headers
         
-        var urlComps = URLComponents(string: strURL)
-        urlComps?.queryItems = queryItems
-        var request = URLRequest(url: (urlComps?.url)!)
-        request.httpMethod = type.methods.rawValue
-        request.allHTTPHeaderFields = type.headers
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request!) { data, response, error in
             guard let data = data, error == nil else {
                 completion(.failure(.invalidData))
                 return
@@ -69,7 +64,7 @@ final class APIManager {
             }
         }.resume()
     }
-    
+
     static var commonHeaders: [String: String] {
         return [
             "Content-Type": "application/json"

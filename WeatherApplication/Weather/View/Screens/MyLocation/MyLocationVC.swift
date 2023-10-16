@@ -303,10 +303,12 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let first = locations.first else { return }
-        lat = first.coordinate.latitude
-        lon = first.coordinate.longitude
-        APIManager.lat = lat
-        APIManager.lon = lon
+        
+        weatherVMInst.lat = first.coordinate.latitude
+        weatherVMInst.lon = first.coordinate.longitude
+        forecastVMInst.lat = weatherVMInst.lat
+        forecastVMInst.lon = weatherVMInst.lon
+        
         weatherVMInst.getWeatherData()
         forecastVMInst.getForecastData()
     }

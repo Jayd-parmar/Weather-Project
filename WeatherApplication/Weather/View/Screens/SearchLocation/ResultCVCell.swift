@@ -91,10 +91,10 @@ class ResultCVCell: UICollectionViewCell {
         lblCity.edgesToSuperview(excluding: [.top], insets: UIEdgeInsets(top: 0, left: 8, bottom: 22, right: 8))
     }
     
-    func configurationLocationCellDetails(_ data: WeatherResponse) {
-        clblTemp.text = "\(data.main.temp)c"
-        cimgWeather.image = UIImage(named: "\(data.weather[0].icon.dropLast())")
-        lblDescWeather.text = "\(data.weather[0].main)"
-        lblCity.text = "\(data.name), \(data.sys.country)"
+    func configurationLocationCellDetails(_ data: SearchWeather) {
+        clblTemp.text = "\(data.temp)c"
+        cimgWeather.image = UIImage(named: data.image!)
+        lblDescWeather.text = data.weatherdesc
+        lblCity.text = data.city
     }
 }

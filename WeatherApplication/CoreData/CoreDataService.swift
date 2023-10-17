@@ -9,13 +9,13 @@ import Foundation
 
 class CoreDataService: CoreDataServiceDelegate {
     
-    func addWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String) -> SearchWeather? {
+    func addWeather(data: CoreDataModel) -> SearchWeather? {
         let weather = SearchWeather(context: Context.context!)
-        weather.temp = temp
-        weather.city = city
-        weather.image = image
-        weather.weatherdesc = weatherDesc
-        weather.id = id
+        weather.temp = data.temp
+        weather.city = data.city
+        weather.image = data.image
+        weather.weatherdesc = data.weatherDesc
+        weather.id = data.id
         do {
             try Context.context!.save()
             return weather
@@ -34,17 +34,17 @@ class CoreDataService: CoreDataServiceDelegate {
         return nil
     }
     
-    func updateWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String) -> SearchWeather? {
+    func updateWeather(data: CoreDataModel) -> SearchWeather? {
         let fetchRequest = SearchWeather.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", data.id)
         do {
             let results = try Context.context!.fetch(fetchRequest)
             guard let weatherToUpdate = results.first else { return nil}
-            weatherToUpdate.id = id
-            weatherToUpdate.temp = temp
-            weatherToUpdate.city = city
-            weatherToUpdate.image = image
-            weatherToUpdate.weatherdesc = weatherDesc
+            weatherToUpdate.id = data.id
+            weatherToUpdate.temp = data.temp
+            weatherToUpdate.city = data.city
+            weatherToUpdate.image = data.image
+            weatherToUpdate.weatherdesc = data.weatherDesc
             try Context.context!.save()
             return weatherToUpdate
         } catch {
@@ -55,7 +55,6 @@ class CoreDataService: CoreDataServiceDelegate {
     
     func getById(id: String) -> Bool {
         let fetchRequest = SearchWeather.fetchRequest()
-        
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         if ((try? Context.context!.fetch(fetchRequest).first) != nil) {
             return true
@@ -66,9 +65,9 @@ class CoreDataService: CoreDataServiceDelegate {
 
 protocol CoreDataServiceDelegate {
     
-    func addWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String) -> SearchWeather?
+    func addWeather(data: CoreDataModel) -> SearchWeather?
     
-    func updateWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String)-> SearchWeather?
+    func updateWeather(data: CoreDataModel)-> SearchWeather?
     
     func getById(id: String) -> Bool
     

@@ -322,6 +322,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func setUpdelegateDataSourceCV() {
         iconCV.dataSource = self
         forecastCV.dataSource = self
+        forecastCV.delegate = self
     }
     
     @objc func viewReportTapped() {
@@ -426,5 +427,15 @@ extension MyLocationVC: UICollectionViewDataSource {
         }
         
     }
+}
+
+extension MyLocationVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = UIColor.white
+            } else {
+                cell.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+            }
+        }
 }
 

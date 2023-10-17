@@ -61,7 +61,6 @@ class PickLocationVC: UIViewController {
     let weatherVMInst = WeatherViewModel()
     let coreDataVMInst = CoreDataViewModel()
     var weatherCDLocation: [SearchWeather] = []
-//    var collectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +110,7 @@ class PickLocationVC: UIViewController {
     private func setupCollectionView() {
         cntView.addSubview(weatherCV)
         weatherCV.dataSource = self
+        weatherCV.delegate = self
         constrainstForWeatherCV()
     }
     
@@ -202,4 +202,14 @@ extension PickLocationVC: UICollectionViewDataSource {
         cell!.configurationLocationCellDetails(weatherCDLocation[indexPath.row])
         return cell!
     }
+}
+
+extension PickLocationVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            if indexPath.row == 0 {
+                cell.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+            } else {
+                cell.backgroundColor = UIColor.white
+            }
+        }
 }

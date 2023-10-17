@@ -42,7 +42,6 @@ class forecastCVCell: UICollectionViewCell {
     
     private func setupCellProperty() {
         self.layer.cornerRadius = 30
-        self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         self.layer.shadowOpacity = 1

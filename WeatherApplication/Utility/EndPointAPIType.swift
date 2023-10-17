@@ -16,7 +16,6 @@ protocol EndPointAPIType {
     var url: String? { get }
     var methods: HttpMethod { get }
     var headers: [String: String]? { get }
-    var apiType: String? {get}
 }
 
 enum EndPointItems {
@@ -45,15 +44,5 @@ extension EndPointItems: EndPointAPIType {
     }
     var methods: HttpMethod {
         return .get
-    }
-    var apiType: String? {
-        switch self {
-        case .weather:
-            return "weather"
-        case .forecast:
-            return "forecast"
-        case .location:
-            return "location"
-        }
     }
 }

@@ -10,7 +10,9 @@ import CoreData
 import UIKit
 
 class CoreDataViewModel {
+    
     let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
     func addWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String) -> SearchWeather? {
         let weather = SearchWeather(context: context!)
         weather.temp = temp

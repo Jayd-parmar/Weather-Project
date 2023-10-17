@@ -9,7 +9,7 @@ import UIKit
 
 class ForecastReportCVCell: UICollectionViewCell {
     let cellVMInst: CellViewModel = CellViewModel()
-    let imgWeather: UIImageView = {
+    private let imgWeather: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -17,7 +17,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         imageView.applyShadow()
         return imageView
     }()
-    let lblDate: UILabel = {
+    private let lblDate: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -26,7 +26,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         lbl.applyShadow()
         return lbl
     }()
-    let lblTime: UILabel = {
+    private let lblTime: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -35,7 +35,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         lbl.applyShadow()
         return lbl
     }()
-    let lblTemp: UILabel = {
+    private let lblTemp: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -44,7 +44,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         lbl.applyShadow()
         return lbl
     }()
-    let containerView: UIView = {
+    private let containerView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
@@ -61,7 +61,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCellProperty() {
+    private func setupCellProperty() {
         self.layer.cornerRadius = 20
         self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
         self.layer.masksToBounds = false
@@ -71,7 +71,7 @@ class ForecastReportCVCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 0, height: 5)
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.addSubview(containerView)
         containerView.addSubview(lblDate)
         containerView.addSubview(lblTime)
@@ -79,14 +79,35 @@ class ForecastReportCVCell: UICollectionViewCell {
         self.addSubview(imgWeather)
     }
     
-    func setupUIConstraints() {
+    private func setupUIConstraints() {
+       constraintsForContainerView()
+        constraintsForDate()
+        constraintsForTemp()
+        constraintsForTime()
+        constraintsForImgWeather()
+    }
+    
+    private func constraintsForContainerView() {
         containerView.width(90)
         containerView.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 0))
+    }
+    
+    private func constraintsForDate() {
         lblDate.edgesToSuperview(excluding: [.bottom], insets: UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0))
-        lblTime.topToBottom(of: lblDate, offset: 1)
-        lblTime.centerX(to: lblDate)
+    }
+    
+    private func constraintsForTemp() {
         lblTemp.leftToRight(of: containerView, offset: 20)
         lblTemp.center(in: self)
+    }
+    
+    private func constraintsForTime() {
+        lblTime.topToBottom(of: lblDate, offset: 1)
+        lblTime.centerX(to: lblDate)
+       
+    }
+    
+    private func constraintsForImgWeather() {
         imgWeather.width(80)
         imgWeather.right(to: self, offset: -15)
         imgWeather.edgesToSuperview(excluding: [.left, .right], insets: UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0))

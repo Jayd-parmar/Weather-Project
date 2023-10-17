@@ -18,7 +18,6 @@ class PickLocationVC: UIViewController {
     }()
     private let lblLocation: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Pick a location"
         label.font = .robotoSlabMedium(size: 30)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -27,7 +26,6 @@ class PickLocationVC: UIViewController {
     }()
     private let lblDesc: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Type the area or city you want to know the \n detailed weather information at \n this time"
         label.font = .robotoSlabLight(size: 15)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
@@ -38,7 +36,6 @@ class PickLocationVC: UIViewController {
     }()
     private let txtSearchLocation: UITextField = {
         let txtField = UITextField()
-        txtField.translatesAutoresizingMaskIntoConstraints = false
         txtField.backgroundColor =  UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
         txtField.layer.cornerRadius = 20
         txtField.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
@@ -48,35 +45,62 @@ class PickLocationVC: UIViewController {
         txtField.textColor = .white
         return txtField
     }()
+    private let weatherCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 162, height: 200)
+        layout.minimumLineSpacing = 39
+        layout.minimumInteritemSpacing = 17
+        let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.showsVerticalScrollIndicator = false
+        cv.register(ResultCVCell.self, forCellWithReuseIdentifier: "cell")
+        return cv
+    }()
     let weatherVMInst = WeatherViewModel()
     let coreDataVMInst = CoreDataViewModel()
     var weatherCDLocation: [SearchWeather] = []
-    var collectionView : UICollectionView!
+//    var collectionView : UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherCDLocation = coreDataVMInst.fetchWeather()!
         observeEventWeather()
         setupUI()
+        setupUIConstraints()
         setupCollectionView()
         txtSearchLocation.delegate = self
     }
     
     private func setupUI() {
         view.addSubview(cntView)
-        cntView.addSubview(lblLocation)
-        cntView.addSubview(lblDesc)
-        cntView.addSubview(txtSearchLocation)
-        setupUIConstraints()
+        let componentArray = [lblLocation, lblDesc, txtSearchLocation]
+        for component in componentArray {
+            cntView.addSubview(component)
+            component.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
     private func setupUIConstraints() {
         cntView.edgesToSuperview()
+        constraintsForLocation()
+        constraintsForDesc()
+        constraintsForSearchTxtField()
+    }
+    
+    private func constraintsForLocation() {
         lblLocation.centerX(to: cntView)
         lblLocation.top(to: cntView, offset: 90)
+    }
+    
+    private func constraintsForDesc() {
         lblDesc.left(to: cntView, offset: 55)
         lblDesc.right(to: cntView, offset: -55)
         lblDesc.topToBottom(of: lblLocation, offset: 5)
+    }
+    
+    private func constraintsForSearchTxtField() {
         txtSearchLocation.topToBottom(of: lblDesc, offset: 21)
         txtSearchLocation.height(63)
         txtSearchLocation.left(to: cntView, offset: 45)
@@ -85,24 +109,16 @@ class PickLocationVC: UIViewController {
     }
     
     private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 162, height: 200)
-        layout.minimumLineSpacing = 39
-        layout.minimumInteritemSpacing = 17
-        collectionView = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.register(ResultCVCell.self, forCellWithReuseIdentifier: "cell")
-        cntView.addSubview(collectionView)
-        
-        collectionView.topToBottom(of: txtSearchLocation, offset: 31)
-        collectionView.left(to: cntView, offset: 45)
-        collectionView.right(to: cntView, offset: -28)
-        collectionView.bottom(to: cntView, offset: -79)
+        cntView.addSubview(weatherCV)
+        weatherCV.dataSource = self
+        constrainstForWeatherCV()
+    }
+    
+    private func constrainstForWeatherCV() {
+        weatherCV.topToBottom(of: txtSearchLocation, offset: 31)
+        weatherCV.left(to: cntView, offset: 45)
+        weatherCV.right(to: cntView, offset: -28)
+        weatherCV.bottom(to: cntView, offset: -79)
     }
     
     private func setupUITextField() {
@@ -133,7 +149,7 @@ extension PickLocationVC: UITextFieldDelegate {
         return true
     }
     
-    func observeEventWeather() {
+    private func observeEventWeather() {
         weatherVMInst.eventHandler = { [weak self] event in
             guard let self else { return }
             
@@ -144,24 +160,9 @@ extension PickLocationVC: UITextFieldDelegate {
                 print("stop loading...")
             case .dataLoaded:
                 DispatchQueue.main.async {
-                    
-                if let weatherData = self.weatherVMInst.pickLocationData {
-                    let temp = weatherData.main.temp
-                    let city = "\(weatherData.name), \(weatherData.sys.country)"
-                    let image = "\(weatherData.weather[0].icon.dropLast())"
-                    let weatherDesc = weatherData.weather[0].main
-                    let id = "\(weatherData.id)"
-                    
-                    if self.coreDataVMInst.getById(id: id) {
-                        let _ = self.coreDataVMInst.updateWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
-                        self.showToast(message: "Updated weather data of city you entered", font: .systemFont(ofSize: 12.0))
-                    } else {
-                        let _ = self.coreDataVMInst.addWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
-                    }
+                    self.cdAddUpdateCall()
+                    self.weatherCV.reloadData()
                 }
-                self.weatherCDLocation = self.coreDataVMInst.fetchWeather()!
-                self.collectionView.reloadData()
-            }
             case .error(_):
                 DispatchQueue.main.async {
                     self.showToast(message: "The City you entered might not be available", font: .systemFont(ofSize: 12.0))
@@ -170,9 +171,27 @@ extension PickLocationVC: UITextFieldDelegate {
             
         }
     }
+    
+    private func cdAddUpdateCall() {
+        if let weatherData = self.weatherVMInst.pickLocationData {
+            let temp = weatherData.main.temp
+            let city = "\(weatherData.name), \(weatherData.sys.country)"
+            let image = "\(weatherData.weather[0].icon.dropLast())"
+            let weatherDesc = weatherData.weather[0].main
+            let id = "\(weatherData.id)"
+            
+            if self.coreDataVMInst.getById(id: id) {
+                let _ = self.coreDataVMInst.updateWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+                self.showToast(message: "Updated weather data of city you entered", font: .systemFont(ofSize: 12.0))
+            } else {
+                let _ = self.coreDataVMInst.addWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+            }
+        }
+        self.weatherCDLocation = self.coreDataVMInst.fetchWeather()!
+    }
 }
 
-extension PickLocationVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension PickLocationVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherCDLocation.count

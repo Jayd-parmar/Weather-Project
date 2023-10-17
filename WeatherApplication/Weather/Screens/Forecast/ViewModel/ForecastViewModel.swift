@@ -14,11 +14,11 @@ class ForecastViewModel {
     var lat: Double? = nil
     var lon: Double? = nil
     private let weatherApiService: WeatherAPIServiceDelegate
+    var queryItems: [URLQueryItem]? = nil
     
     init(weatherApiService: WeatherAPIServiceDelegate = WeatherApiService()) {
         self.weatherApiService = weatherApiService
     }
-    var queryItems: [URLQueryItem]? = nil
     
     func getForecastData() {
         addQueryParams()

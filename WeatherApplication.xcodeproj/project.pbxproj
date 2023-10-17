@@ -54,6 +54,7 @@
 		29D78BBA2ADE7D99001673F9 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BB92ADE7D99001673F9 /* Context.swift */; };
 		29D78BBD2ADE7E4E001673F9 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BBC2ADE7E4E001673F9 /* CoreDataService.swift */; };
 		29D78BC62ADE8B45001673F9 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BC52ADE8B45001673F9 /* CoreDataTest.swift */; };
+		29D78BC82ADE9144001673F9 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BC72ADE9144001673F9 /* CoreDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		29D78BB92ADE7D99001673F9 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		29D78BBC2ADE7E4E001673F9 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		29D78BC52ADE8B45001673F9 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
+		29D78BC72ADE9144001673F9 /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 		29D78BA82ADD5F42001673F9 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				29D78BC72ADE9144001673F9 /* CoreDataModel.swift */,
 				29D78BB92ADE7D99001673F9 /* Context.swift */,
 				29D78BA42ADD5F2D001673F9 /* SearchWeather.swift */,
 				29D78BBC2ADE7E4E001673F9 /* CoreDataService.swift */,
@@ -616,6 +619,7 @@
 			files = (
 				29D4AFD42AD97F83009CC37D /* ViewControllerExtension.swift in Sources */,
 				29D78B682ADBFDF7001673F9 /* WeatherService.swift in Sources */,
+				29D78BC82ADE9144001673F9 /* CoreDataModel.swift in Sources */,
 				293BF18D2AD26E250018E66F /* AppDelegate.swift in Sources */,
 				29D78BBA2ADE7D99001673F9 /* Context.swift in Sources */,
 				296BEB162AD69BA100715342 /* ForecastReportCVCell.swift in Sources */,

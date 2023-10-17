@@ -11,8 +11,8 @@ class ForecastViewModel {
     
     var eventHandler: ((Event) -> Void)?
     var forecastData: ForecastResponse?
-    var lat: Double? = nil
-    var lon: Double? = nil
+    var lat: Double? = 0.0
+    var lon: Double? = 0.0
     private let weatherApiService: WeatherAPIServiceDelegate
     var queryItems: [URLQueryItem]? = nil
     
@@ -37,7 +37,7 @@ class ForecastViewModel {
         }
     }
     
-    func addQueryParams() {
+    private func addQueryParams() {
         queryItems = [
             URLQueryItem(name: "lat", value: "\(self.lat!)"),
             URLQueryItem(name: "lon", value: "\(self.lon!)"),

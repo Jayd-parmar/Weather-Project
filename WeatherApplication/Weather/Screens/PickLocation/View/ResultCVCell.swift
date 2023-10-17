@@ -55,7 +55,6 @@ class ResultCVCell: UICollectionViewCell {
     }
     
     private func setupCellProperty() {
-        self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor

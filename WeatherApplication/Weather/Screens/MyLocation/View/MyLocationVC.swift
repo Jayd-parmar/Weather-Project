@@ -336,9 +336,8 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         
         weatherVMInst.lat = first.coordinate.latitude
         weatherVMInst.lon = first.coordinate.longitude
-        forecastVMInst.lat = weatherVMInst.lat
-        forecastVMInst.lon = weatherVMInst.lon
-        
+        forecastVMInst.lat = first.coordinate.latitude
+        forecastVMInst.lon = first.coordinate.longitude
         weatherVMInst.getWeatherData()
         forecastVMInst.getForecastData()
     }

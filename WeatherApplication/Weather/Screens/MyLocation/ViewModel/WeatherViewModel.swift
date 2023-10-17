@@ -13,8 +13,8 @@ class WeatherViewModel {
     var weatherData: WeatherResponse?
     var pickLocationData: WeatherResponse?
     var search: String? = nil
-    var lat: Double? = nil
-    var lon: Double? = nil
+    var lat: Double? = 0.0
+    var lon: Double? = 0.0
     let iconData: [(String, String)] = [
         ("01", "clear sky"),
         ("02", "few clouds"),

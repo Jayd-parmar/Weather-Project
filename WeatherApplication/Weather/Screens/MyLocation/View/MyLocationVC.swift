@@ -31,7 +31,6 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }()
     private let lblCity: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = .robotoSlabMedium(size: 30)
         label.applyShadow()
@@ -39,7 +38,6 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }()
     private let lblDate: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = .robotoSlabLight(size: 15)
         label.applyShadow()
@@ -47,34 +45,20 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }()
     private let imgWeather: UIImageView = {
         let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         image.applyShadow()
         return image
     }()
     private let lblTemp: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = .robotoSlabMedium(size: 70)
         label.applyShadow()
         return label
     }()
-    private let vwTemp: UIView = {
-        let vw = UIView()
-        vw.translatesAutoresizingMaskIntoConstraints = false
-        return vw
-    }()
-    private let vwHumidity: UIView = {
-        let vw = UIView()
-        vw.translatesAutoresizingMaskIntoConstraints = false
-        return vw
-    }()
-    private let vwWind: UIView = {
-        let vw = UIView()
-        vw.translatesAutoresizingMaskIntoConstraints = false
-        return vw
-    }()
+    private let vwTemp: UIView = UIView()
+    private let vwHumidity: UIView = UIView()
+    private let vwWind: UIView = UIView()
     private let lblTmp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -156,9 +140,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 5, right: 13)
         layout.estimatedItemSize = CGSize(width: 86, height: 80)
         layout.minimumLineSpacing = 30
-        
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor =  UIColor(red: 0.469, green: 0.511, blue: 0.654, alpha: 1)
         cv.showsHorizontalScrollIndicator = false
         cv.clipsToBounds = false
@@ -171,7 +153,6 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 166, height: 85)
         layout.minimumLineSpacing = 20
-        
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
@@ -202,14 +183,11 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private func setupUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(iconCV)
-        contentView.addSubview(lblCity)
-        contentView.addSubview(lblDate)
-        contentView.addSubview(imgWeather)
-        contentView.addSubview(lblTemp)
-        contentView.addSubview(vwTemp)
-        contentView.addSubview(vwHumidity)
-        contentView.addSubview(vwWind)
+        let componentArray = [iconCV, lblCity, lblDate, imgWeather, lblTemp, vwTemp, vwHumidity, vwWind]
+        for component in componentArray {
+            contentView.addSubview(component)
+            component.translatesAutoresizingMaskIntoConstraints = false
+        }
         vwTemp.addSubview(lblTmp)
         vwTemp.addSubview(lblValTmp)
         vwHumidity.addSubview(lblHmdty)
@@ -223,65 +201,118 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setupUIConstraints() {
+        constraintsForScrollView()
+        constraintsForContentView()
+        constraintsForIconCV()
+        constraintsForCity()
+        constrainstForDate()
+        constraintsForImgWeather()
+        constraintsForTemp()
+        constraintsForTempContainer()
+        constraintsForHumidityContainer()
+        constraintsForWindContainer()
+        constraintsForlblTemp()
+        constraintsForlblHumidity()
+        constraintsForlblWind()
+        constraintsForlblToday()
+        constraintsForBtnViewReport()
+        constraintsForForecastCV()
+    }
+    
+    private func constraintsForScrollView() {
         scrollView.frame.size = CGSize(width: view.bounds.width, height: view.bounds.height)
         scrollView.edgesToSuperview()
+    }
+    
+    private func constraintsForContentView() {
         contentView.width(view.bounds.width)
         contentView.height(view.bounds.height)
         contentView.edges(to: scrollView)
-        
+    }
+    
+    private func constraintsForIconCV() {
         iconCV.height(100)
         iconCV.edges(to: contentView, excluding: .bottom)
-        
+    }
+    
+    private func constraintsForCity() {
         lblCity.height(40)
         lblCity.centerX(to: contentView)
         lblCity.topToBottom(of: iconCV, offset: 23)
-        
+    }
+    
+    private func constrainstForDate() {
         lblDate.height(20)
         lblDate.centerX(to: contentView)
         lblDate.topToBottom(of: lblCity, offset: 3)
-        
+    }
+    
+    private func constraintsForImgWeather() {
         imgWeather.width(155)
         imgWeather.height(155)
         imgWeather.centerX(to: contentView)
         imgWeather.topToBottom(of: lblDate, offset: 24)
-        
+    }
+    
+    private func constraintsForTemp() {
         lblTemp.height(92)
         lblTemp.centerX(to: contentView)
         lblTemp.topToBottom(of: imgWeather)
-        
+    }
+    
+    private func constraintsForTempContainer() {
         vwTemp.width(80)
         vwTemp.height(50)
         vwTemp.topToBottom(of: lblTemp, offset: 38)
         vwTemp.left(to: contentView, offset: 38)
+    }
+    
+    private func constraintsForHumidityContainer() {
         vwHumidity.width(80)
         vwHumidity.height(50)
         vwHumidity.leftToRight(of: vwTemp, offset: 60)
         vwHumidity.centerY(to: vwTemp)
+    }
+    
+    private func constraintsForWindContainer() {
         vwWind.width(80)
         vwWind.height(50)
         vwWind.leftToRight(of: vwHumidity, offset: 60)
         vwWind.centerY(to: vwHumidity)
-        
+    }
+    
+    private func constraintsForlblTemp() {
         lblTmp.height(20)
         lblTmp.edges(to: vwTemp, excluding: .bottom, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         lblValTmp.centerX(to: lblTmp)
         lblValTmp.topToBottom(of: lblTmp)
-        
+    }
+    
+    private func constraintsForlblHumidity() {
         lblHmdty.height(20)
         lblHmdty.edges(to: vwHumidity, excluding: .bottom, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         lblValHmdty.topToBottom(of: lblTmp)
         lblValHmdty.centerX(to: lblHmdty)
-        
+    }
+    
+    private func constraintsForlblWind() {
         lblWind.height(20)
         lblWind.edges(to: vwWind, excluding: .bottom, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         lblValWind.centerX(to: lblWind)
         lblValWind.topToBottom(of: lblTmp)
-        
+    }
+    
+    private func constraintsForlblToday() {
         lblToday.left(to: contentView, offset: 24)
         lblToday.topToBottom(of: vwTemp, offset: 31)
+    }
+    
+    private func constraintsForBtnViewReport() {
         btnViewReport.topToBottom(of: vwWind, offset: 31)
         btnViewReport.right(to: contentView, offset: -21)
-        
+    }
+    
+    private func constraintsForForecastCV() {
         forecastCV.topToBottom(of: btnViewReport, offset: 31)
         forecastCV.left(to: contentView, offset: 10)
         forecastCV.right(to: contentView, offset: 10)
@@ -289,9 +320,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }
     
     private func setUpdelegateDataSourceCV() {
-        iconCV.delegate = self
         iconCV.dataSource = self
-        forecastCV.delegate = self
         forecastCV.dataSource = self
     }
     
@@ -362,7 +391,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }
 }
 
-extension MyLocationVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension MyLocationVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {

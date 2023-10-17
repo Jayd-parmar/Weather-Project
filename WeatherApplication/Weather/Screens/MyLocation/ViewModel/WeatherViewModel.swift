@@ -26,13 +26,12 @@ class WeatherViewModel {
         ("13", "snow"),
         ("50", "mist")
     ]
+    var queryItems: [URLQueryItem]? = nil
     private let weatherApiService: WeatherAPIServiceDelegate
     
     init(weatherApiService: WeatherAPIServiceDelegate = WeatherApiService()) {
         self.weatherApiService = weatherApiService
     }
-    
-    var queryItems: [URLQueryItem]? = nil
     
     func getWeatherData() {
         addQueryParams()
@@ -58,7 +57,7 @@ class WeatherViewModel {
         return dateFormatter.string(from: date)
     }
     
-    func addQueryParams() {
+    private func addQueryParams() {
         if self.search != nil {
             queryItems = [
                 URLQueryItem(name: "q", value: search),
@@ -74,11 +73,4 @@ class WeatherViewModel {
             ]
         }
     }
-}
-
-enum Event {
-    case loading
-    case stopLoading
-    case dataLoaded
-    case error(Error?)
 }

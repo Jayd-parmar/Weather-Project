@@ -9,39 +9,33 @@ import UIKit
 import TinyConstraints
 
 class ResultCVCell: UICollectionViewCell {
+    
     //MARK: -Variable
-    let clblTemp: UILabel = {
+    private let clblTemp: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
     }()
-    
-    let cimgWeather: UIImageView = {
+    private let cimgWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.applyShadow()
         return imageView
     }()
-    
-    let lblCity: UILabel = {
+    private let lblCity: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
         return label
     }()
-    
-    let lblDescWeather: UILabel = {
+    private let lblDescWeather: UILabel = {
        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         label.font = .robotoSlabLight(size: 18)
         label.textAlignment = .center
@@ -53,13 +47,14 @@ class ResultCVCell: UICollectionViewCell {
         super.init(frame: frame)
         setupCellProperty()
         setupUI()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCellProperty() {
+    private func setupCellProperty() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.layer.masksToBounds = false
@@ -69,24 +64,40 @@ class ResultCVCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 0, height: 5)
     }
     
-    func setupUI() {
-        self.addSubview(clblTemp)
-        self.addSubview(cimgWeather)
-        self.addSubview(lblDescWeather)
-        self.addSubview(lblCity)
-        setupConstraints()
+    private func setupUI() {
+        let componentArray = [clblTemp, cimgWeather, lblDescWeather, lblCity]
+        for component in componentArray {
+            self.addSubview(component)
+            component.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
+        constraintsForTemp()
+        constraintsForImgWeather()
+        constraintsForDescWeather()
+        constraintForCity()
+    }
+    
+    private func constraintsForTemp() {
         clblTemp.height(26)
         clblTemp.edgesToSuperview(excluding: .bottom, insets: UIEdgeInsets(top: 22, left: 8, bottom: 0, right: 8))
+    }
+    
+    private func constraintsForImgWeather() {
         cimgWeather.height(80)
         cimgWeather.topToBottom(of: clblTemp, offset: 1)
         cimgWeather.edgesToSuperview(excluding: [.top, .bottom], insets: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
+    }
+    
+    private func constraintsForDescWeather() {
         lblDescWeather.height(24)
         lblDescWeather.topToBottom(of: cimgWeather, offset: 1)
         lblDescWeather.edgesToSuperview(excluding: [.top, .bottom], insets: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
         lblDescWeather.text = "cloudy"
+    }
+    
+    private func constraintForCity() {
         lblCity.topToBottom(of: lblDescWeather, offset: 1)
         lblCity.edgesToSuperview(excluding: [.top], insets: UIEdgeInsets(top: 0, left: 8, bottom: 22, right: 8))
     }

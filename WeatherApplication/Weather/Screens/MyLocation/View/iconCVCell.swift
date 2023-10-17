@@ -11,13 +11,11 @@ class iconCVCell: UICollectionViewCell {
     
     private var imgWeather : UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "01")
         return imageView
     }()
     private var lblWeather : UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .center
         label.font = .robotoSlabMedium(size: 15)
@@ -35,15 +33,26 @@ class iconCVCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
-        self.addSubview(imgWeather)
-        self.addSubview(lblWeather)
+    private func setupUI() {
+        let componentArray = [imgWeather, lblWeather]
+        for component in componentArray {
+            self.addSubview(component)
+            component.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
+        constraintsForImgWeather()
+        constraintsForLblWeather()
+    }
+    
+    private func constraintsForImgWeather() {
         imgWeather.size(CGSize(width: 60, height: 60))
         imgWeather.center(in: self)
         imgWeather.top(to: self)
+    }
+    
+    private func constraintsForLblWeather() {
         lblWeather.height(20)
         lblWeather.topToBottom(of: imgWeather)
         lblWeather.centerX(to: imgWeather)

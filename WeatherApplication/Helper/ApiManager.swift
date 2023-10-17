@@ -9,13 +9,6 @@ import Foundation
 
 typealias Handler<T> = (Result<T, DataError>) -> Void
 
-enum DataError: Error {
-    case invalidResponse
-    case invalidURL
-    case invalidData
-    case network(Error?)
-}
-
 final class APIManager {
     
     static let shared = APIManager()

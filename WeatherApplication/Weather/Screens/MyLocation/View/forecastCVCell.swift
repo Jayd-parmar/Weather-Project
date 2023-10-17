@@ -8,25 +8,22 @@
 import UIKit
 
 class forecastCVCell: UICollectionViewCell {
-    let cellVMInst: CellViewModel = CellViewModel()
-    let imgWeather: UIImageView = {
+    private let cellVMInst: CellViewModel = CellViewModel()
+    private let imgWeather: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.applyShadow()
         return imageView
     }()
-    let lblTime: UILabel = {
+    private let lblTime: UILabel = {
        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.font = .robotoSlabMedium(size: 12)
         lbl.applyShadow()
         return lbl
     }()
-    let lblTemp: UILabel = {
+    private let lblTemp: UILabel = {
        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.font = .robotoSlabMedium(size: 17)
         lbl.applyShadow()
         return lbl
@@ -43,7 +40,7 @@ class forecastCVCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCellProperty() {
+    private func setupCellProperty() {
         self.layer.cornerRadius = 30
         self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
         self.layer.masksToBounds = false
@@ -53,18 +50,32 @@ class forecastCVCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
     
-    func setupUI() {
-        self.addSubview(imgWeather)
-        self.addSubview(lblTime)
-        self.addSubview(lblTemp)
+    private func setupUI() {
+        let componentArray = [imgWeather, lblTime, lblTemp]
+        for component in componentArray {
+            self.addSubview(component)
+            component.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
+        constraintsForImgWeather()
+        constraintForlblTime()
+        constraintsForlblTemp()
+    }
+    
+    private func constraintsForImgWeather() {
         imgWeather.width(75)
         imgWeather.edgesToSuperview(excluding: .right, insets: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0))
+    }
+    
+    private func constraintForlblTime() {
         lblTime.height(16)
         lblTime.top(to: self, offset: 27)
         lblTime.leftToRight(of: imgWeather, offset: 13)
+    }
+    
+    private func constraintsForlblTemp() {
         lblTemp.width(75)
         lblTemp.topToBottom(of: lblTime, offset: 5)
         lblTemp.bottom(to: self, offset: -15)

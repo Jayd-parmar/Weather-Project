@@ -13,14 +13,14 @@ class PickLocationVC: UIViewController {
     private let cntView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.backgroundColor = Theme.grayishBlue
         return cv
     }()
     private let lblLocation: UILabel = {
         let label = UILabel()
         label.text = "Pick a location"
         label.font = .robotoSlabMedium(size: 30)
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.applyShadow()
         return label
     }()
@@ -28,7 +28,7 @@ class PickLocationVC: UIViewController {
         let label = UILabel()
         label.text = "Type the area or city you want to know the \n detailed weather information at \n this time"
         label.font = .robotoSlabLight(size: 15)
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.textAlignment = .center
         label.numberOfLines = 0
         label.applyShadow()
@@ -36,9 +36,9 @@ class PickLocationVC: UIViewController {
     }()
     private let txtSearchLocation: UITextField = {
         let txtField = UITextField()
-        txtField.backgroundColor =  UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+        txtField.backgroundColor =  Theme.periWinkleBlue
         txtField.layer.cornerRadius = 20
-        txtField.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+        txtField.layer.shadowColor = Theme.shadowBlack.cgColor
         txtField.layer.shadowOffset = CGSize(width: 0, height: 4)
         txtField.layer.shadowOpacity = 0.3
         txtField.placeholder = "Search"
@@ -53,7 +53,7 @@ class PickLocationVC: UIViewController {
         layout.minimumInteritemSpacing = 17
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.backgroundColor = Theme.grayishBlue
         cv.showsVerticalScrollIndicator = false
         cv.register(ResultCVCell.self, forCellWithReuseIdentifier: "cell")
         return cv
@@ -208,7 +208,7 @@ extension PickLocationVC: UICollectionViewDataSource {
 extension PickLocationVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if indexPath.row == 0 {
-                cell.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+                cell.backgroundColor = Theme.periWinkleBlue
             } else {
                 cell.backgroundColor = UIColor.white
             }

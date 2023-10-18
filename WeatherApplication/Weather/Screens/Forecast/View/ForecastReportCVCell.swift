@@ -20,7 +20,7 @@ class ForecastReportCVCell: UICollectionViewCell {
     private let lblDate: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        lbl.textColor = Theme.white
         lbl.font = .robotoSlabMedium(size: 14)
         lbl.textAlignment = .center
         lbl.applyShadow()
@@ -29,7 +29,7 @@ class ForecastReportCVCell: UICollectionViewCell {
     private let lblTime: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        lbl.textColor = Theme.white
         lbl.font = .robotoSlabLight(size: 13)
         lbl.textAlignment = .center
         lbl.applyShadow()
@@ -38,7 +38,7 @@ class ForecastReportCVCell: UICollectionViewCell {
     private let lblTemp: UILabel = {
        let lbl = UILabel()
         lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        lbl.textColor = Theme.white
         lbl.font = .robotoSlabMedium(size: 36)
         lbl.numberOfLines = 1
         lbl.applyShadow()
@@ -63,9 +63,9 @@ class ForecastReportCVCell: UICollectionViewCell {
     
     private func setupCellProperty() {
         self.layer.cornerRadius = 20
-        self.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+        self.backgroundColor = Theme.periWinkleBlue
         self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        self.layer.shadowColor = Theme.shadowBlack.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
         self.layer.shadowOffset = CGSize(width: 0, height: 5)

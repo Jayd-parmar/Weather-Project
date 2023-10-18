@@ -43,9 +43,6 @@ extension UIViewController {
     }
     
     func applyBackgroundToTabBar() {
-        if let tabBarController = self.tabBarController {
-            self.tabBarController!.tabBar.barTintColor = UIColor.setColor(darkColor: Theme.tabBarBlue, lightColor: Theme.lightPeriWinkleBlue)
-        }
-
+        self.tabBarController!.tabBar.barTintColor = UIColor.setColor(darkColor: Theme.tabBarBlue, lightColor: Theme.lightPeriWinkleBlue)
     }
 }

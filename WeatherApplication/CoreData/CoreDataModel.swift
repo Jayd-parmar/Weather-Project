@@ -8,9 +8,19 @@
 import Foundation
 
 struct CoreDataModel {
-    let id: String
-    let temp: Double
-    let city: String
-    let image: String
-    let weatherDesc: String
+    var id: String
+    var temp: Double
+    var city: String
+    var image: String
+    var weatherDesc: String
+}
+
+extension CoreDataModel {
+    init(from searchWeather: SearchWeather) {
+        self.id = searchWeather.id ?? "01"
+        self.temp = searchWeather.temp
+        self.city = searchWeather.city ?? "Mumbai"
+        self.image = searchWeather.image ?? "01"
+        self.weatherDesc = searchWeather.weatherdesc ?? "Cloudy"
+    }
 }

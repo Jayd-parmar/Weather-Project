@@ -17,7 +17,7 @@ class CoreDataViewModel {
         self.coreDataService = coreDataService
     }
     
-    func addWeather(data: CoreDataModel) -> SearchWeather? {
+    func addWeather(data: CoreDataModel) -> CoreDataModel? {
         return coreDataService.addWeather(data: data)
     }
     
@@ -25,7 +25,7 @@ class CoreDataViewModel {
         return coreDataService.fetchWeather()
     }
     
-    func updateWeather(data: CoreDataModel)-> SearchWeather? {
+    func updateWeather(data: CoreDataModel)-> CoreDataModel? {
         return coreDataService.updateWeather(data: data)
     }
     

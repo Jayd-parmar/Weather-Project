@@ -8,6 +8,7 @@
 import XCTest
 @testable import WeatherApplication
 
+
 final class CoreDataTest: XCTestCase {
 
     var viewModel: CoreDataViewModel!
@@ -22,18 +23,19 @@ final class CoreDataTest: XCTestCase {
     }
     
     func test_addWeatherLocation() {
-        let weather = viewModel.addWeather(
-            id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        let coreData = CoreDataModel(id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        let weather = viewModel.addWeather(data: coreData)
         
         XCTAssertNotNil(weather, "Weather should not be nil")
     }
     
     func test_updateWeatherLocation() {
-        let weather = viewModel.addWeather(id: "1", temp: 0.0, city: "", image: "", weatherDesc: "")
+        let coreData = CoreDataModel(id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        var weather = viewModel.addWeather(data: coreData)
         weather!.temp = 10.0
         weather!.city = "New york"
         
-        let updateWeather = viewModel.updateWeather(id: (weather?.id)!, temp: weather!.temp, city: (weather?.city)!, image: (weather?.image)!, weatherDesc: (weather?.weatherdesc)!)
+        let updateWeather = viewModel.updateWeather(data: weather!)
         
         XCTAssertTrue(weather?.id == updateWeather?.id)
         XCTAssertTrue(updateWeather?.temp == 10.0)
@@ -41,8 +43,10 @@ final class CoreDataTest: XCTestCase {
     }
     
     func test_fetchWeatherLocation() {
-        let weather = viewModel.addWeather(id: "12", temp: 10.0, city: "Mumbai", image: "02", weatherDesc: "Cloudy")
-        let weather1 = viewModel.addWeather(id: "13", temp: 20.0, city: "Pune", image: "03", weatherDesc: "Drizzle")
+        let coreData = CoreDataModel(id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        let coreData1 = CoreDataModel(id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        let weather = viewModel.addWeather(data: coreData)
+        let weather1 = viewModel.addWeather(data: coreData1)
         
         let weatherData = viewModel.fetchWeather()
         
@@ -50,7 +54,8 @@ final class CoreDataTest: XCTestCase {
     }
     
     func test_getByID() {
-        let weather = viewModel.addWeather(id: "1", temp: 30.0, city: "Botad", image: "04", weatherDesc: "Rainy")
+        let coreData = CoreDataModel(id: "1", temp: 12.3, city: "Mumbai", image: "01", weatherDesc: "Cloudy")
+        let weather = viewModel.addWeather(data: coreData)
         let found = viewModel.getById(id: (weather?.id)!)
         
         XCTAssertTrue(found)

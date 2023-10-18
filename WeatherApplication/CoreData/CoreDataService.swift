@@ -9,7 +9,7 @@ import Foundation
 
 class CoreDataService: CoreDataServiceDelegate {
     
-    func addWeather(data: CoreDataModel) -> SearchWeather? {
+    func addWeather(data: CoreDataModel) -> CoreDataModel? {
         let weather = SearchWeather(context: Context.context!)
         weather.temp = data.temp
         weather.city = data.city
@@ -18,7 +18,7 @@ class CoreDataService: CoreDataServiceDelegate {
         weather.id = data.id
         do {
             try Context.context!.save()
-            return weather
+            return CoreDataModel(from: weather)
         } catch {
             print("fatalError in adding weather city")
         }
@@ -34,7 +34,7 @@ class CoreDataService: CoreDataServiceDelegate {
         return nil
     }
     
-    func updateWeather(data: CoreDataModel) -> SearchWeather? {
+    func updateWeather(data: CoreDataModel) -> CoreDataModel? {
         let fetchRequest = SearchWeather.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", data.id)
         do {
@@ -46,7 +46,7 @@ class CoreDataService: CoreDataServiceDelegate {
             weatherToUpdate.image = data.image
             weatherToUpdate.weatherdesc = data.weatherDesc
             try Context.context!.save()
-            return weatherToUpdate
+            return CoreDataModel(from: weatherToUpdate)
         } catch {
             print("fatal error while fetching the request of id")
         }
@@ -65,9 +65,9 @@ class CoreDataService: CoreDataServiceDelegate {
 
 protocol CoreDataServiceDelegate {
     
-    func addWeather(data: CoreDataModel) -> SearchWeather?
+    func addWeather(data: CoreDataModel) -> CoreDataModel?
     
-    func updateWeather(data: CoreDataModel)-> SearchWeather?
+    func updateWeather(data: CoreDataModel)-> CoreDataModel?
     
     func getById(id: String) -> Bool
     

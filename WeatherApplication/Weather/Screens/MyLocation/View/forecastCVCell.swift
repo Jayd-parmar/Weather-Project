@@ -16,14 +16,13 @@ class forecastCVCell: UICollectionViewCell {
         imageView.applyShadow()
         return imageView
     }()
-    private let lblTime: UILabel = {
+    let lblTime: UILabel = {
        let lbl = UILabel()
         lbl.font = .robotoSlabMedium(size: 12)
-        lbl.textColor = Theme.black
         lbl.applyShadow()
         return lbl
     }()
-    private let lblTemp: UILabel = {
+    let lblTemp: UILabel = {
        let lbl = UILabel()
         lbl.font = .robotoSlabMedium(size: 17)
         lbl.textColor = Theme.black

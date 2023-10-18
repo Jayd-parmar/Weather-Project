@@ -22,7 +22,7 @@ class ForecastReportVC: UIViewController {
     private let contentView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = Theme.grayishBlue
+        cv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         return cv
     }()
     private let forecastCV: UICollectionView = {
@@ -32,7 +32,7 @@ class ForecastReportVC: UIViewController {
         layout.minimumLineSpacing = 20
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = Theme.grayishBlue
+        cv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         cv.showsVerticalScrollIndicator = false
         cv.register(ForecastReportCVCell.self, forCellWithReuseIdentifier: "cell")
         return cv
@@ -41,6 +41,7 @@ class ForecastReportVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyBackgroundToTabBar()
         setupUI()
         setupConstraints()
         setUpUICollectionView()

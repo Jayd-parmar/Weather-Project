@@ -56,6 +56,7 @@
 		29D78BC62ADE8B45001673F9 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BC52ADE8B45001673F9 /* CoreDataTest.swift */; };
 		29D78BC82ADE9144001673F9 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BC72ADE9144001673F9 /* CoreDataModel.swift */; };
 		29D78BCB2ADEC584001673F9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BCA2ADEC584001673F9 /* Theme.swift */; };
+		29D78BCD2ADFB4D6001673F9 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D78BCC2ADFB4D6001673F9 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		29D78BC52ADE8B45001673F9 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		29D78BC72ADE9144001673F9 /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		29D78BCA2ADEC584001673F9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		29D78BCC2ADFB4D6001673F9 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				29D4AFD12AD97F6C009CC37D /* CollectionViewExtension.swift */,
 				29D4AFD32AD97F83009CC37D /* ViewControllerExtension.swift */,
 				29D4AFD52AD97F98009CC37D /* FontExtension.swift */,
+				29D78BCC2ADFB4D6001673F9 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				29D78BA62ADD5F2D001673F9 /* SearchWeather.swift in Sources */,
 				29D78BCB2ADEC584001673F9 /* Theme.swift in Sources */,
 				29D4AFCE2AD97F4A009CC37D /* LabelExtension.swift in Sources */,
+				29D78BCD2ADFB4D6001673F9 /* UIColorExtension.swift in Sources */,
 				29D78B7A2ADD36A1001673F9 /* CoreDataViewModel.swift in Sources */,
 				293BF1D42AD3BC110018E66F /* WeatherModel.swift in Sources */,
 				293BF1D02AD2746F0018E66F /* ForecastReportVC.swift in Sources */,

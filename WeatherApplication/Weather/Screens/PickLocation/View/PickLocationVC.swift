@@ -13,7 +13,7 @@ class PickLocationVC: UIViewController {
     private let cntView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = Theme.grayishBlue
+        cv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         return cv
     }()
     private let lblLocation: UILabel = {
@@ -36,7 +36,7 @@ class PickLocationVC: UIViewController {
     }()
     private let txtSearchLocation: UITextField = {
         let txtField = UITextField()
-        txtField.backgroundColor =  Theme.periWinkleBlue
+        txtField.backgroundColor =  UIColor.setColor(darkColor: Theme.darkPeriWinkleBlue, lightColor: Theme.lightPeriWinkleBlue)
         txtField.layer.cornerRadius = 20
         txtField.layer.shadowColor = Theme.shadowBlack.cgColor
         txtField.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -53,7 +53,7 @@ class PickLocationVC: UIViewController {
         layout.minimumInteritemSpacing = 17
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = Theme.grayishBlue
+        cv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         cv.showsVerticalScrollIndicator = false
         cv.register(ResultCVCell.self, forCellWithReuseIdentifier: "cell")
         return cv
@@ -64,6 +64,7 @@ class PickLocationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyBackgroundToTabBar()
         weatherCDLocation = coreDataVMInst.fetchWeather()!
         observeEventWeather()
         setupUI()
@@ -208,9 +209,9 @@ extension PickLocationVC: UICollectionViewDataSource {
 extension PickLocationVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if indexPath.row == 0 {
-                cell.backgroundColor = Theme.periWinkleBlue
+                cell.backgroundColor = Theme.lightPeriWinkleBlue
             } else {
-                cell.backgroundColor = UIColor.white
+                cell.backgroundColor = UIColor.setColor(darkColor: Theme.darkPeriWinkleBlue, lightColor: Theme.white)
             }
         }
 }

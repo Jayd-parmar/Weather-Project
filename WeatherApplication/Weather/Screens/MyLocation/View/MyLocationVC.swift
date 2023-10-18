@@ -12,6 +12,7 @@ import TinyConstraints
 class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - Variables
+    
     var manager: CLLocationManager = CLLocationManager()
     var lat: Double = 0.0
     var lon: Double = 0.0
@@ -20,7 +21,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
-        sv.backgroundColor = Theme.grayishBlue
+        sv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -129,7 +130,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("View Report", for: .normal)
-        btn.setTitleColor(.blue, for: .normal)
+        btn.setTitleColor(UIColor.setColor(darkColor: Theme.lightPeriWinkleBlue, lightColor: Theme.lightBlue), for: .normal)
         btn.titleLabel?.font = .robotoSlabLight(size: 20)
         btn.applyShadow()
         return btn
@@ -137,11 +138,11 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let iconCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 5, right: 13)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 25, bottom: 9, right: 13)
         layout.estimatedItemSize = CGSize(width: 86, height: 80)
         layout.minimumLineSpacing = 30
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor =  Theme.slatBlue
+        cv.backgroundColor =  UIColor.setColor(darkColor: Theme.darkSlatBlue, lightColor: Theme.lightSlatBlue)
         cv.showsHorizontalScrollIndicator = false
         cv.clipsToBounds = false
         cv.register(iconCVCell.self, forCellWithReuseIdentifier: "cell")
@@ -155,7 +156,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         layout.minimumLineSpacing = 20
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = Theme.grayishBlue
+        cv.backgroundColor = UIColor.setColor(darkColor: Theme.darkGrayishBlue, lightColor: Theme.lightGrayishBlue)
         cv.showsHorizontalScrollIndicator = false
         cv.clipsToBounds = false
         cv.register(forecastCVCell.self, forCellWithReuseIdentifier: "cell")
@@ -165,6 +166,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyBackgroundToTabBar()
         setupUI()
         setupUIConstraints()
         setUpdelegateDataSourceCV()
@@ -431,9 +433,17 @@ extension MyLocationVC: UICollectionViewDataSource {
 extension MyLocationVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if indexPath.row % 2 == 0 {
-                cell.backgroundColor = UIColor.white
+                cell.backgroundColor = UIColor.setColor(darkColor: Theme.lightPeriWinkleBlue, lightColor: Theme.white)
+                if let cell = cell as? forecastCVCell {
+                    cell.lblTime.textColor = Theme.black
+                    cell.lblTemp.textColor = Theme.black
+                }
             } else {
-                cell.backgroundColor = Theme.periWinkleBlue
+                cell.backgroundColor = UIColor.setColor(darkColor: Theme.darkPeriWinkleBlue, lightColor: Theme.lightPeriWinkleBlue)
+                if let cell = cell as? forecastCVCell {
+                    cell.lblTime.textColor = Theme.white
+                    cell.lblTemp.textColor = Theme.white
+                }
             }
         }
 }

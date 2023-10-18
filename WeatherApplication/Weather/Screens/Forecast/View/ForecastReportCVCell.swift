@@ -63,7 +63,7 @@ class ForecastReportCVCell: UICollectionViewCell {
     
     private func setupCellProperty() {
         self.layer.cornerRadius = 20
-        self.backgroundColor = Theme.periWinkleBlue
+        self.backgroundColor = UIColor.setColor(darkColor: Theme.darkPeriWinkleBlue, lightColor: Theme.lightPeriWinkleBlue)
         self.layer.masksToBounds = false
         self.layer.shadowColor = Theme.shadowBlack.cgColor
         self.layer.shadowOpacity = 1

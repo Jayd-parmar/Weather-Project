@@ -13,7 +13,7 @@ class ResultCVCell: UICollectionViewCell {
     //MARK: -Variable
     private let clblTemp: UILabel = {
         let label = UILabel()
-        label.textColor = Theme.black
+        label.textColor = UIColor.setColor(darkColor: Theme.white, lightColor: Theme.black)
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -28,7 +28,7 @@ class ResultCVCell: UICollectionViewCell {
     }()
     private let lblCity: UILabel = {
         let label = UILabel()
-        label.textColor = Theme.black
+        label.textColor = UIColor.setColor(darkColor: Theme.white, lightColor: Theme.black)
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -36,7 +36,7 @@ class ResultCVCell: UICollectionViewCell {
     }()
     private let lblDescWeather: UILabel = {
        let label = UILabel()
-        label.textColor = Theme.black
+        label.textColor = UIColor.setColor(darkColor: Theme.white, lightColor: Theme.black)
         label.font = .robotoSlabLight(size: 18)
         label.textAlignment = .center
         label.applyShadow()

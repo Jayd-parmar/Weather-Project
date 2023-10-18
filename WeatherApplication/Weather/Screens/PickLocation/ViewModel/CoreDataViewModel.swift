@@ -17,16 +17,16 @@ class CoreDataViewModel {
         self.coreDataService = coreDataService
     }
     
-    func addWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String) -> SearchWeather? {
-        return coreDataService.addWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+    func addWeather(data: CoreDataModel) -> CoreDataModel? {
+        return coreDataService.addWeather(data: data)
     }
     
     func fetchWeather() -> [SearchWeather]? {
         return coreDataService.fetchWeather()
     }
     
-    func updateWeather(id: String, temp: Double, city: String, image: String, weatherDesc: String)-> SearchWeather? {
-        return coreDataService.updateWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+    func updateWeather(data: CoreDataModel)-> CoreDataModel? {
+        return coreDataService.updateWeather(data: data)
     }
     
     func getById(id: String) -> Bool {

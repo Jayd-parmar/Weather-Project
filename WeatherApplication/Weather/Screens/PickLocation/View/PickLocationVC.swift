@@ -174,17 +174,18 @@ extension PickLocationVC: UITextFieldDelegate {
     
     private func cdAddUpdateCall() {
         if let weatherData = self.weatherVMInst.pickLocationData {
-            let temp = weatherData.main.temp
-            let city = "\(weatherData.name), \(weatherData.sys.country)"
-            let image = "\(weatherData.weather[0].icon.dropLast())"
-            let weatherDesc = weatherData.weather[0].main
-            let id = "\(weatherData.id)"
-            
-            if self.coreDataVMInst.getById(id: id) {
-                let _ = self.coreDataVMInst.updateWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+            let coreData = CoreDataModel(
+                id: "\(weatherData.id)",
+                temp: weatherData.main.temp,
+                city: "\(weatherData.name), \(weatherData.sys.country)",
+                image: "\(weatherData.weather[0].icon.dropLast())",
+                weatherDesc: weatherData.weather[0].main
+            )
+            if self.coreDataVMInst.getById(id: coreData.id) {
+                let _ = self.coreDataVMInst.updateWeather(data: coreData)
                 self.showToast(message: "Updated weather data of city you entered", font: .systemFont(ofSize: 12.0))
             } else {
-                let _ = self.coreDataVMInst.addWeather(id: id, temp: temp, city: city, image: image, weatherDesc: weatherDesc)
+                let _ = self.coreDataVMInst.addWeather(data: coreData)
             }
         }
         self.weatherCDLocation = self.coreDataVMInst.fetchWeather()!

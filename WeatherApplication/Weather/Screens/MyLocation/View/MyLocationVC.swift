@@ -20,7 +20,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
-        sv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        sv.backgroundColor = Theme.grayishBlue
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -31,14 +31,14 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }()
     private let lblCity: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 30)
         label.applyShadow()
         return label
     }()
     private let lblDate: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabLight(size: 15)
         label.applyShadow()
         return label
@@ -51,7 +51,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     }()
     private let lblTemp: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 70)
         label.applyShadow()
         return label
@@ -62,7 +62,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblTmp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabLight(size: 15)
         label.text = "Temp"
         label.textAlignment = .center
@@ -72,7 +72,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblValTmp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -81,7 +81,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblHmdty: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabLight(size: 15)
         label.text = "Humidity"
         label.textAlignment = .center
@@ -91,7 +91,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblValHmdty: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -101,7 +101,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .robotoSlabLight(size: 15)
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.text = "Wind"
         label.textAlignment = .center
         label.applyShadow()
@@ -110,7 +110,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
     private let lblValWind: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -120,7 +120,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Today"
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabLight(size: 20)
         label.applyShadow()
         return label
@@ -141,7 +141,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         layout.estimatedItemSize = CGSize(width: 86, height: 80)
         layout.minimumLineSpacing = 30
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor =  UIColor(red: 0.469, green: 0.511, blue: 0.654, alpha: 1)
+        cv.backgroundColor =  Theme.slatBlue
         cv.showsHorizontalScrollIndicator = false
         cv.clipsToBounds = false
         cv.register(iconCVCell.self, forCellWithReuseIdentifier: "cell")
@@ -155,7 +155,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         layout.minimumLineSpacing = 20
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.backgroundColor = Theme.grayishBlue
         cv.showsHorizontalScrollIndicator = false
         cv.clipsToBounds = false
         cv.register(forecastCVCell.self, forCellWithReuseIdentifier: "cell")
@@ -433,7 +433,7 @@ extension MyLocationVC: UICollectionViewDelegate {
             if indexPath.row % 2 == 0 {
                 cell.backgroundColor = UIColor.white
             } else {
-                cell.backgroundColor = UIColor(red: 0.656, green: 0.706, blue: 0.879, alpha: 1)
+                cell.backgroundColor = Theme.periWinkleBlue
             }
         }
 }

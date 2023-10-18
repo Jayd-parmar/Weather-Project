@@ -12,7 +12,7 @@ class ForecastReportVC: UIViewController {
     private let lblForecast: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.font = .robotoSlabMedium(size: 30)
         label.textAlignment = .center
         label.text = "Forecast Report"
@@ -22,7 +22,7 @@ class ForecastReportVC: UIViewController {
     private let contentView: UIView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.backgroundColor = Theme.grayishBlue
         return cv
     }()
     private let forecastCV: UICollectionView = {
@@ -32,7 +32,7 @@ class ForecastReportVC: UIViewController {
         layout.minimumLineSpacing = 20
         let cv = UICollectionView( frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = UIColor(red: 0.51, green: 0.549, blue: 0.682, alpha: 1)
+        cv.backgroundColor = Theme.grayishBlue
         cv.showsVerticalScrollIndicator = false
         cv.register(ForecastReportCVCell.self, forCellWithReuseIdentifier: "cell")
         return cv

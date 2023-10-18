@@ -16,7 +16,7 @@ class iconCVCell: UICollectionViewCell {
     }()
     private var lblWeather : UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = Theme.white
         label.textAlignment = .center
         label.font = .robotoSlabMedium(size: 15)
         label.applyShadow()

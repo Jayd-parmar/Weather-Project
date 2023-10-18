@@ -13,7 +13,7 @@ class ResultCVCell: UICollectionViewCell {
     //MARK: -Variable
     private let clblTemp: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.textColor = Theme.black
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -28,7 +28,7 @@ class ResultCVCell: UICollectionViewCell {
     }()
     private let lblCity: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.textColor = Theme.black
         label.font = .robotoSlabMedium(size: 20)
         label.textAlignment = .center
         label.applyShadow()
@@ -36,7 +36,7 @@ class ResultCVCell: UICollectionViewCell {
     }()
     private let lblDescWeather: UILabel = {
        let label = UILabel()
-        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.textColor = Theme.black
         label.font = .robotoSlabLight(size: 18)
         label.textAlignment = .center
         label.applyShadow()
@@ -57,7 +57,7 @@ class ResultCVCell: UICollectionViewCell {
     private func setupCellProperty() {
         self.layer.cornerRadius = 20
         self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        self.layer.shadowColor = Theme.shadowBlack.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 4
         self.layer.shadowOffset = CGSize(width: 0, height: 5)

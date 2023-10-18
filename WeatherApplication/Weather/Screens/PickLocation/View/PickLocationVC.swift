@@ -213,5 +213,9 @@ extension PickLocationVC: UICollectionViewDelegate {
             } else {
                 cell.backgroundColor = UIColor.setColor(darkColor: Theme.darkPeriWinkleBlue, lightColor: Theme.white)
             }
-        }
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.tabBarController?.selectedIndex = 0
+//    }
 }

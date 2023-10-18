@@ -41,7 +41,6 @@ class ForecastReportVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.applyBackgroundToTabBar()
         setupUI()
         setupConstraints()
         setUpUICollectionView()

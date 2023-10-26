@@ -8,19 +8,13 @@
 import Foundation
 @testable import WeatherApplication
 
-class MockWeatherApiService: WeatherAPIServiceDelegate {
+class MockWeatherApiService<T>: WeatherAPIServiceDelegate {
     
-    var result: Result<WeatherResponse, DataError>!
-    var resultForecast: Result<ForecastResponse, DataError>!
+    var result: Result<T, DataError>!
     
     func getWeatherData<T: Codable>(modelType: T.Type, type: EndPointAPIType, queryItems: [URLQueryItem], completion: @escaping Handler<T>) {
         completion(result as! Result<T, DataError>)
     }
-    
-    func getForecastData<T>(modelType: T.Type, type: WeatherApplication.EndPointAPIType, queryItems: [URLQueryItem], completion: @escaping WeatherApplication.Handler<T>) where T : Decodable, T : Encodable {
-        completion(resultForecast as! Result<T, DataError>)
-    }
-    
     
     func weather() -> WeatherResponse? {
         do {

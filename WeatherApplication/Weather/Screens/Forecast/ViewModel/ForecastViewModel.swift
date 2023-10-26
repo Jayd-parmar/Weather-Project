@@ -20,10 +20,10 @@ class ForecastViewModel {
         self.weatherApiService = weatherApiService
     }
     
-    func getForecastData() {
+    func getWeatherData() {
         addQueryParams()
         self.eventHandler?(.loading)
-        weatherApiService.getForecastData(modelType: ForecastResponse.self,
+        weatherApiService.getWeatherData(modelType: ForecastResponse.self,
                                           type: EndPointItems.forecast, queryItems: queryItems!
         ) { response in
             self.eventHandler?(.stopLoading)

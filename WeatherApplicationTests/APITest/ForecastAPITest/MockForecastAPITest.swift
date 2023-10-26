@@ -11,7 +11,7 @@ import XCTest
 final class MockForecastAPITest: XCTestCase {
     
     var viewModel: ForecastViewModel!
-    var mockService: MockWeatherApiService!
+    var mockService: MockWeatherApiService<ForecastResponse>!
     
     override func setUp() {
         super.setUp()
@@ -27,9 +27,9 @@ final class MockForecastAPITest: XCTestCase {
     
     func test_ForecastAPIFailure() {
         //Arrange
-        mockService.resultForecast = .failure(.invalidData)
+        mockService.result = .failure(.invalidData)
         //ACT
-        viewModel.getForecastData()
+        viewModel.getWeatherData()
         //ASSERT
         XCTAssertNil(viewModel.forecastData, "Forecast Data is not nil")
     }
@@ -37,10 +37,10 @@ final class MockForecastAPITest: XCTestCase {
     func test_WeatherAPISuccess() {
         // Arrange
         guard let forecast = mockService.forecast() else { return }
-        mockService.resultForecast = .success(forecast)
+        mockService.result = .success(forecast)
 
         // Act
-        viewModel.getForecastData()
+        viewModel.getWeatherData()
 
         // Assert
         XCTAssertNotNil(viewModel.forecastData)

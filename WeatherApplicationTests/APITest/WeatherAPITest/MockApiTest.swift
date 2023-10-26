@@ -11,7 +11,7 @@ import XCTest
 final class MockApiTest: XCTestCase {
     
     var viewModel: WeatherViewModel!
-    var mockService: MockWeatherApiService!
+    var mockService: MockWeatherApiService<WeatherResponse>!
     
     override func setUp() {
         super.setUp()

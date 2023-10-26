@@ -341,7 +341,7 @@ class MyLocationVC: UIViewController, CLLocationManagerDelegate {
         forecastVMInst.lat = first.coordinate.latitude
         forecastVMInst.lon = first.coordinate.longitude
         weatherVMInst.getWeatherData()
-        forecastVMInst.getForecastData()
+        forecastVMInst.getWeatherData()
     }
     
     private func observeEventWeather() {
